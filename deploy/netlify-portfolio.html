@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarnIn AI Marketing Portfolio - David Bui</title>
+    <link rel="stylesheet" href="css/netlify-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-video"></i>
+                <span>EarnIn AI Portfolio</span>
+            </div>
+            <nav class="nav">
+                <a href="#process" class="nav-link">Process</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#methodology" class="nav-link">Methodology</a>
+                <a href="#about" class="nav-link">About</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-primary" onclick="uploadVideos()">
+                    <i class="fas fa-plus"></i>
+                    Upload Videos
+                </button>
+                <button class="btn-secondary" onclick="clearAllVideos()" id="clear-btn" style="display: none;">
+                    <i class="fas fa-trash"></i>
+                    Clear All
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AI-Generated Marketing Content Portfolio</h1>
+            <p>Showcasing the evolution of AI content creation through structured JSON prompts and director-level thinking</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" id="total-videos">0</span>
+                    <span class="stat-label">Videos Created</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="ai-tools">8</span>
+                    <span class="stat-label">AI Tools Used</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="success-rate">85%</span>
+                    <span class="stat-label">Success Rate</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process-section">
+        <div class="container">
+            <h2>My AI Content Creation Process</h2>
+            <div class="process-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>1. Requirements & Structure</h3>
+                        <p>Writing clear requirements, shots, and constraints. Turning each sentence into measurable fields (duration, framing, objects, actions).</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>2. JSON Template Development</h3>
+                        <p>Creating structured JSON prompts with deterministic levers (seed, style library, brand colors, negative prompts) in one place.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>3. Director's Vision</h3>
+                        <p>Thinking like a director and videographer, keeping narrative in scenes and precision in shots.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>4. AI Generation & Iteration</h3>
+                        <p>Using multiple AI tools (Sora, Veo, Flow, Gemini) with structured prompts for consistent, high-quality output.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="gallery-header">
+                <h2>Video Gallery</h2>
+                <div class="gallery-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-input" placeholder="Search videos...">
+                    </div>
+                    <div class="filter-dropdown">
+                        <select id="filter-ai-tool">
+                            <option value="">All AI Tools</option>
+                            <option value="Sora">Sora</option>
+                            <option value="Veo3">Veo3</option>
+                            <option value="ChatGPT">ChatGPT</option>
+                            <option value="Gemini">Gemini</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <button class="btn-clear" onclick="clearAllVideos()" id="gallery-clear-btn" style="display: none;">
+                        <i class="fas fa-trash-alt"></i>
+                        Clear All Videos
+                    </button>
+                </div>
+            </div>
+            
+            <div class="video-grid" id="video-grid">
+                <!-- Videos will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="methodology-section">
+        <div class="container">
+            <h2>JSON Prompt Methodology & Automated Scoring System</h2>
+            <p>Based on my structured approach documented in <a href="https://docs.google.com/spreadsheets/d/1VThE5mDLFk_kAwmz9OirAHjWTs5fRxTaNzQUWHF36s8/edit?usp=sharing" target="_blank">this Google Sheet</a></p>
+            
+            <div class="methodology-grid">
+                <div class="methodology-card">
+                    <h3>1. Metadata & Variables</h3>
+                    <ul>
+                        <li>AD_ID: Unique tracking identifier</li>
+                        <li>MODEL: VLM specification (Sora, Veo3, etc.)</li>
+                        <li>TARGET_PLATFORM: Aspect ratio constraints</li>
+                        <li>DURATION_SEC: Runtime limits</li>
+                        <li>A_B_TEST_VARIABLE: Focus variables</li>
+                    </ul>
+                </div>
+                <div class="methodology-card">
+                    <h3>2. Cinematography Parameters</h3>
+                    <ul>
+                        <li>CAMERA_TYPE: Digital cinema specifications</li>
+                        <li>LENS_SPEC: 35mm prime lens equivalent</li>
+                        <li>DEPTH_OF_FIELD: Shallow focus control</li>
+                        <li>LIGHTING: Golden hour or studio diffused</li>
+                        <li>COLOR_GRADE: Warm cinematic minimal saturation</li>
+                    </ul>
+                </div>
+                <div class="methodology-card">
+                    <h3>3. Scene Breakdown</h3>
+                    <ul>
+                        <li>Three-act structure: Tension → Solution → Resolution</li>
+                        <li>Time-coded visual descriptions</li>
+                        <li>Text overlay specifications</li>
+                        <li>Camera movement (dolly, push-in)</li>
+                    </ul>
+                </div>
+                <div class="methodology-card">
+                    <h3>4. Audio & CTA</h3>
+                    <ul>
+                        <li>VOICEOVER_TEXT: Brand messaging</li>
+                        <li>MUSIC_TRACK: Uplifting ambient synth</li>
+                        <li>SFX: App tap sounds, cash register chime</li>
+                        <li>FINAL_CTA: Download EarnIn call-to-action</li>
+                    </ul>
+                </div>
+                <div class="methodology-card">
+                    <h3>5. Automated Scoring System</h3>
+                    <ul>
+                        <li><strong>Quality Assessment:</strong> Visual clarity, resolution, and technical execution</li>
+                        <li><strong>Engagement Metrics:</strong> Story flow, pacing, and viewer retention</li>
+                        <li><strong>Brand Alignment:</strong> Consistency with EarnIn brand guidelines</li>
+                        <li><strong>Creative Innovation:</strong> Uniqueness and creative approach</li>
+                        <li><strong>Prompt Effectiveness:</strong> JSON structure success rate</li>
+                    </ul>
+                </div>
+                <div class="methodology-card">
+                    <h3>6. Optimization Insights</h3>
+                    <ul>
+                        <li><strong>Failed Prompts:</strong> Identify patterns in low-scoring content</li>
+                        <li><strong>Creative Enhancements:</strong> Suggestions for improved storytelling</li>
+                        <li><strong>Technical Improvements:</strong> Camera angles, lighting, and composition</li>
+                        <li><strong>Platform Optimization:</strong> AI tool-specific best practices</li>
+                        <li><strong>Iteration Tracking:</strong> Success rate improvements over time</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="scoring-system-demo">
+                <h3>🎯 Automated Scoring in Action</h3>
+                <p>This portfolio demonstrates how the scoring system helps the EarnIn team:</p>
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <div class="demo-icon">🚫</div>
+                        <h4>Avoid Failed Patterns</h4>
+                        <p>Identify JSON prompts that consistently produce low-quality results</p>
+                    </div>
+                    <div class="demo-card">
+                        <div class="demo-icon">💡</div>
+                        <h4>Enhance Creativity</h4>
+                        <p>Discover what makes content more engaging and innovative</p>
+                    </div>
+                    <div class="demo-card">
+                        <div class="demo-icon">🎬</div>
+                        <h4>Optimize Videography</h4>
+                        <p>Refine camera work, lighting, and composition techniques</p>
+                    </div>
+                    <div class="demo-card">
+                        <div class="demo-icon">📊</div>
+                        <h4>Data-Driven Decisions</h4>
+                        <p>Make informed choices based on performance metrics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About This Portfolio</h2>
+            <p>This portfolio demonstrates my systematic approach to AI-generated marketing content creation. By applying director-level thinking to structured JSON prompts, I've developed a repeatable methodology that produces consistent, high-quality results across multiple AI platforms.</p>
+            <div class="tech-stack">
+                <h3>AI Tools & Technologies</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">Sora</div>
+                    <div class="tech-item">Veo3</div>
+                    <div class="tech-item">ChatGPT</div>
+                    <div class="tech-item">Gemini</div>
+                    <div class="tech-item">Other Platforms</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hidden File Input -->
+    <input type="file" id="file-input" multiple accept="video/*" style="display: none;">
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <video id="modal-video" controls>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="modal-info">
+                <h3 id="modal-title"></h3>
+                <p id="modal-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/netlify-portfolio.js"></script>
+</body>
+</html>

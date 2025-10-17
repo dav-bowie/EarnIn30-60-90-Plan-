@@ -1,0 +1,2346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarnIn — AI Marketing Mini Showcase</title>
+    <meta name="description" content="Where creativity meets AI precision in live-action advertising">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #F59E0B;
+            --accent: #10B981;
+            --text-primary: #0F172A;
+            --text-secondary: #64748B;
+            --text-muted: #94A3B8;
+            --background: #FFFFFF;
+            --background-secondary: #F8FAFC;
+            --background-tertiary: #F1F5F9;
+            --border: #E2E8F0;
+            --border-light: #F1F5F9;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            --gradient-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
+            --gradient-secondary: linear-gradient(135deg, #F59E0B 0%, #EF4444 50%, #EC4899 100%);
+            --gradient-background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+            
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+        }
+
+        .nav-brand h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--gradient-background);
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-primary);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--gradient-secondary);
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .orb-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
+            bottom: 20%;
+            left: 60%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 0.9;
+            margin-bottom: 24px;
+            letter-spacing: -0.04em;
+        }
+
+        .title-line-1 {
+            display: block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title-line-2 {
+            display: block;
+            color: var(--text-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 32px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .cta-button svg {
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover svg {
+            transform: translateY(2px);
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat {
+            transition: transform 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: scale(1.05);
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 80px 0;
+            background: var(--background);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 32px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 64px;
+            padding-left: 96px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.animate-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item:hover .timeline-marker {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 64px;
+            height: 64px;
+            background: var(--background);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-number {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .timeline-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 1.125rem;
+        }
+
+        .timeline-details ul {
+            list-style: none;
+            background: var(--background-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .timeline-details li {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline-details li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .timeline-details li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Showcase Section */
+        .showcase-section {
+            padding: 80px 0;
+            background: var(--background-secondary);
+        }
+
+        .upload-section {
+            background: white;
+            border: 2px dashed var(--border);
+            border-radius: 20px;
+            padding: 60px 48px;
+            text-align: center;
+            margin-bottom: 48px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .upload-section:hover {
+            border-color: var(--primary);
+            background: var(--background-secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .upload-section:hover::before {
+            left: 100%;
+        }
+
+        .upload-section.dragover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 24px;
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .upload-text {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .upload-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .upload-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .upload-button:hover::before {
+            left: 100%;
+        }
+
+        .upload-button:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+
+        /* Simple Stats */
+        .simple-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .video-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+            border-radius: 16px;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .video-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .video-card:active {
+            transform: translateY(-4px) scale(0.98);
+        }
+
+
+
+        .video-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(99, 102, 241, 0.1) 50%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-card:hover::after {
+            opacity: 1;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .video-container:hover video {
+            transform: scale(1.02);
+        }
+
+        .video-container video:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-title {
+            font-family: var(--font-display);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .video-meta {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+
+        .video-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .btn-small {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-small:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            padding: 4px;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .analysis-section {
+            background: var(--background-secondary);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .analysis-section h4 {
+            margin: 0 0 16px 0;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .metric {
+            margin-bottom: 16px;
+        }
+
+        .metric label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .metric input[type="range"] {
+            width: 100%;
+            margin-bottom: 4px;
+        }
+
+        .metric span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .performance-data {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .data-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .data-item label {
+            min-width: 120px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .data-item input, .data-item select {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .analysis-section textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            resize: vertical;
+        }
+
+        .modal-footer {
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Video Modal */
+        .video-modal {
+            background: rgba(0, 0, 0, 0.95);
+        }
+
+        .video-modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 900px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .video-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .video-modal-header h3 {
+            margin: 0;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+        }
+
+        .video-modal-body {
+            padding: 24px;
+            text-align: center;
+        }
+
+        .video-modal-info {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--background-secondary);
+            border-radius: 12px;
+        }
+
+        .modal-score-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .modal-score-display .score-circle {
+            width: 80px;
+            height: 80px;
+        }
+
+        .modal-score-display .score-number {
+            font-size: 1.8rem;
+        }
+
+        .modal-video-details {
+            text-align: left;
+        }
+
+        .modal-video-details p {
+            margin: 8px 0;
+            color: var(--text-secondary);
+        }
+
+        .modal-video-details strong {
+            color: var(--text-primary);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+            opacity: 0;
+            z-index: 2;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-container:hover .play-overlay {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-overlay:hover {
+            background: rgba(99, 102, 241, 0.9);
+            transform: translate(-50%, -50%) scale(1.2);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .play-overlay:active {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .delete-button {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            z-index: 3;
+        }
+
+        .delete-button:hover {
+            background: rgba(239, 68, 68, 1);
+            transform: scale(1.1);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* Launch Section */
+        .launch-section {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .launch-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .launch-content p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-size: 1.1rem;
+        }
+
+        .launch-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .launch-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .launch-button.primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .launch-button.secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .launch-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .launch-button:active {
+            transform: translateY(0) scale(1.02);
+        }
+
+        /* Methodology Section */
+        .methodology-section {
+            padding: 80px 0;
+            background: var(--background);
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .method-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .method-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .method-card {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .method-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .method-card:hover::before {
+            left: 100%;
+        }
+
+        .method-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .method-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .method-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 64px 0 32px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-section h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .footer-section h4 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .footer-section p {
+            color: #94A3B8;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            color: #94A3B8;
+            margin-bottom: 8px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .footer-section li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid #374151;
+        }
+
+        .footer-bottom p {
+            color: #6B7280;
+            font-size: 0.875rem;
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: white;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: var(--shadow-xl);
+            z-index: 3000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            max-width: 400px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.error {
+            border-left-color: #EF4444;
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            .timeline::before {
+                left: 16px;
+            }
+            
+            .timeline-item {
+                padding-left: 64px;
+            }
+            
+            .timeline-marker {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .methodology-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 16px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h2>EarnIn AI Showcase</h2>
+            </div>
+            <div class="nav-links">
+                <a href="#process" class="nav-link">Process</a>
+                <a href="#showcase" class="nav-link">Showcase</a>
+                <a href="#methodology" class="nav-link">Methodology</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line-1">AI Marketing</span>
+                    <span class="title-line-2">Mini Showcase</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Where creativity meets AI precision in live-action advertising
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">AI Videos</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5-9s</span>
+                        <span class="stat-label">Duration</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">AI Generated</span>
+                    </div>
+                </div>
+                <button class="cta-button" onclick="scrollToSection('showcase')">
+                    Explore Showcase
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 12L3 7L4.4 5.6L8 9.2L11.6 5.6L13 7L8 12Z" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Timeline Section -->
+    <section id="process" class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>My AI Content Creation Process</h2>
+                <p>From concept to execution: How I orchestrate AI-generated marketing content</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="step-number">01</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Structure & Requirements</h3>
+                        <p>Define measurable fields, constraints, and deterministic levers upfront</p>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Duration, framing, objects, actions</li>
+                                <li>Seed, style library, brand colors</li>
+                                <li>Negative prompts and constraints</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="step-number">02</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>JSON Prompt Architecture</h3>
+                        <p>Transform ideas into structured, repeatable JSON prompts</p>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>1-sentence logline definition</li>
+                                <li>3-5 story beats mapped to scenes</li>
+                                <li>Environment, intent, and shot specifications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="step-number">03</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Director Thinking</h3>
+                        <p>Think like a director orchestrating the entire production</p>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Narrative in scenes, precision in shots</li>
+                                <li>Audio master with VO timestamps</li>
+                                <li>Music hit points and timing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="step-number">04</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>AI Tool Orchestration</h3>
+                        <p>Leverage multiple AI tools for optimal results</p>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Sora, Flow, Gemini, Veo3, ChatGPT</li>
+                                <li>Canva for design elements</li>
+                                <li>Platform-specific optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="step-number">05</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Quality Assurance</h3>
+                        <p>Sanity check timing and export settings</p>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Sum of scenes + transitions ≈ total duration</li>
+                                <li>CTA endcard integration</li>
+                                <li>Export settings optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Showcase Section -->
+    <section id="showcase" class="showcase-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI-Generated Video Portfolio</h2>
+                <p>Explore my collection of AI-crafted marketing content</p>
+            </div>
+
+            <!-- Simple Stats -->
+            <div class="simple-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="total-videos">0</span>
+                    <span class="stat-label">Videos Uploaded</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="total-size">0 MB</span>
+                    <span class="stat-label">Total Size</span>
+                </div>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="upload-section" id="upload-section">
+                <div class="upload-icon">🎬</div>
+                <div class="upload-text">Drag & drop your video here, or click to browse</div>
+                <div style="display: flex; gap: 12px; justify-content: center; margin-top: 16px;">
+                    <button class="upload-button" onclick="document.getElementById('file-input').click()">
+                        Choose Video File
+                    </button>
+                    <button class="upload-button" onclick="clearAllVideos()" style="background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);">
+                        Clear All Videos
+                    </button>
+                </div>
+                <input type="file" id="file-input" class="file-input" accept="video/*" multiple>
+            </div>
+
+
+            <!-- Video Grid -->
+            <div class="video-grid" id="video-grid">
+                <!-- Videos will be added here -->
+            </div>
+
+            <div class="empty-state" id="empty-state" style="display: none;">
+                <h3>No videos yet</h3>
+                <p>Upload your first AI-generated video to get started</p>
+            </div>
+
+            <!-- Launch Section -->
+            <div class="launch-section" id="launch-section" style="display: none;">
+                <div class="launch-content">
+                    <h3>🚀 Ready to Launch Your Portfolio!</h3>
+                    <p>Your video portfolio is ready to showcase. Click below to launch it as a standalone website.</p>
+                    <div class="launch-buttons">
+                        <button class="launch-button primary" onclick="launchWebsite()">
+                            <span>Launch Website</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="launch-button secondary" onclick="downloadPortfolio()">
+                            <span>Download Files</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 15V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V15M7 10L12 15L17 10M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JSON Methodology Section -->
+    <section id="methodology" class="methodology-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>JSON Prompt Methodology</h2>
+                <p>My repeatable method for turning any idea into structured AI prompts</p>
+            </div>
+            
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <div class="method-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 7H21M3 12H21M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Write the Logline</h3>
+                    <p>Start with a clear 1-sentence concept that captures the core message</p>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M9 9H15V15H9V9Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Define Constraints</h3>
+                    <p>Duration, platform, aspect ratio, brand tone - set boundaries upfront</p>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Map Story Beats</h3>
+                    <p>Outline 3-5 story beats and map them to specific scenes</p>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Define Shots</h3>
+                    <p>For each scene: environment, intent, and exact shots with durations</p>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke="currentColor" stroke-width="2"/>
+                            <path d="M19.07 4.93L20.5 6.36C21.32 7.18 21.32 8.52 20.5 9.34L19.07 10.77" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Audio Master</h3>
+                    <p>Add VO timestamps and music hit points for perfect sync</p>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Global Controls</h3>
+                    <p>Seed, fps, negative prompts to keep outputs stable and consistent</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AI Marketing Intern Candidate</h3>
+                    <p>Ready to bring AI precision to your marketing campaigns</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Skills Demonstrated</h4>
+                    <ul>
+                        <li>AI Tool Orchestration</li>
+                        <li>JSON Prompt Architecture</li>
+                        <li>Director-Level Thinking</li>
+                        <li>Creative Process Optimization</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Tools Mastered</h4>
+                    <ul>
+                        <li>Sora, Flow, Gemini</li>
+                        <li>Veo3, Veo2, ChatGPT</li>
+                        <li>Canva, Creative Suites</li>
+                        <li>Multi-Platform Optimization</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Marketing Mini Showcase. Built with precision and creativity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple video storage
+        let videos = [];
+
+        // Load videos from localStorage on page load
+        function loadVideos() {
+            const stored = localStorage.getItem('earnin-videos');
+            if (stored) {
+                try {
+                    videos = JSON.parse(stored);
+                    renderVideos();
+                } catch (error) {
+                    console.error('Error loading videos:', error);
+                }
+            }
+        }
+
+        // Save videos to localStorage
+        function saveVideos() {
+            // Create a copy without file objects (they can't be serialized)
+            const videosToSave = videos.map(video => ({
+                id: video.id,
+                name: video.name,
+                url: video.url,
+                size: video.size,
+                uploadDate: video.uploadDate
+                // Note: file object is not saved as it can't be serialized
+            }));
+            localStorage.setItem('earnin-videos', JSON.stringify(videosToSave));
+            console.log('Saved videos to localStorage:', videosToSave.length);
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <span>${message}</span>
+                    <button class="toast-close" onclick="this.parentElement.parentElement.remove()">×</button>
+                </div>
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Handle file upload
+        function handleFileUpload(files) {
+            Array.from(files).forEach(file => {
+                if (file.type.startsWith('video/')) {
+                    const videoUrl = URL.createObjectURL(file);
+                    console.log('Created video URL:', videoUrl);
+                    console.log('File type:', file.type);
+                    console.log('File size:', file.size);
+                    
+                    const video = {
+                        id: Date.now() + Math.random(),
+                        name: file.name,
+                        url: videoUrl,
+                        size: file.size,
+                        uploadDate: new Date().toISOString(),
+                        file: file,
+                        
+                        // Performance tracking
+                        status: 'pending',
+                        aiTool: 'Unknown',
+                        prompt: '',
+                        metrics: {
+                            quality: 0,
+                            engagement: 0,
+                            clarity: 0,
+                            brandAlignment: 0,
+                            technicalExecution: 0
+                        },
+                        performance: {
+                            generationTime: Math.floor(Math.random() * 300) + 30,
+                            iterations: Math.floor(Math.random() * 5) + 1,
+                            successRate: 0,
+                            notes: ''
+                        },
+                        defects: [],
+                        improvements: []
+                    };
+                    
+                    videos.push(video);
+                    saveVideos();
+                    renderVideos();
+                    showToast(`Video "${file.name}" uploaded successfully!`);
+                } else {
+                    showToast('Please select a video file', 'error');
+                }
+            });
+        }
+
+        // Update simple stats
+        function updateSimpleStats() {
+            const totalVideos = videos.length;
+            const totalSize = videos.reduce((sum, video) => sum + video.size, 0);
+            const totalSizeMB = (totalSize / (1024 * 1024)).toFixed(1);
+            
+            document.getElementById('total-videos').textContent = totalVideos;
+            document.getElementById('total-size').textContent = `${totalSizeMB} MB`;
+            
+            // Show launch section if we have videos
+            const launchSection = document.getElementById('launch-section');
+            if (totalVideos > 0) {
+                launchSection.style.display = 'block';
+            } else {
+                launchSection.style.display = 'none';
+            }
+        }
+
+        // Launch website function
+        function launchWebsite() {
+            // Create Python server script
+            const serverCode = `
+import http.server
+import socketserver
+import webbrowser
+import os
+
+PORT = 8000
+
+class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        super().end_headers()
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+with socketserver.TCPServer(("", PORT), MyHTTPRequestHandler) as httpd:
+    print(f"Server running at http://localhost:{PORT}/")
+    webbrowser.open(f'http://localhost:{PORT}/aesthetic-index.html')
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("\\nServer stopped.")
+`;
+
+            // Create Windows batch file to run the Python script
+            const batchCode = `@echo off
+echo Starting EarnIn AI Marketing Portfolio...
+echo.
+python launch_server.py
+pause`;
+
+            // Download both files
+            const serverBlob = new Blob([serverCode], { type: 'text/python' });
+            const batchBlob = new Blob([batchCode], { type: 'text/plain' });
+            
+            // Download Python script
+            const serverUrl = URL.createObjectURL(serverBlob);
+            const serverLink = document.createElement('a');
+            serverLink.href = serverUrl;
+            serverLink.download = 'launch_server.py';
+            serverLink.click();
+            URL.revokeObjectURL(serverUrl);
+            
+            // Download batch file
+            const batchUrl = URL.createObjectURL(batchBlob);
+            const batchLink = document.createElement('a');
+            batchLink.href = batchUrl;
+            batchLink.download = 'LAUNCH_PORTFOLIO.bat';
+            batchLink.click();
+            URL.revokeObjectURL(batchUrl);
+            
+            showToast('Files downloaded! Double-click LAUNCH_PORTFOLIO.bat to start your portfolio automatically!', 'success');
+        }
+
+        // Download portfolio function
+        function downloadPortfolio() {
+            // Create a zip-like structure with all necessary files
+            const portfolioData = {
+                'index.html': document.documentElement.outerHTML,
+                'videos': videos,
+                'README.md': `# EarnIn AI Marketing Portfolio
+
+## How to Launch
+
+1. Run the server: \`python launch_server.py\`
+2. Open http://localhost:8000 in your browser
+3. Your portfolio is now live!
+
+## Features
+
+- Interactive video gallery
+- Performance analysis tools
+- Beautiful animations and effects
+- Responsive design
+- Professional presentation
+
+## Videos
+
+Total videos: ${videos.length}
+Total size: ${(videos.reduce((sum, video) => sum + video.size, 0) / (1024 * 1024)).toFixed(1)} MB
+
+Generated on: ${new Date().toLocaleDateString()}
+`
+            };
+
+            const blob = new Blob([JSON.stringify(portfolioData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'earnin-portfolio.json';
+            a.click();
+            URL.revokeObjectURL(url);
+
+            showToast('Portfolio data downloaded! You can now share or deploy your portfolio.', 'success');
+        }
+
+        // Get tool icon
+        function getToolIcon(tool) {
+            const icons = {
+                'Sora': '🎬',
+                'Runway': '🎭',
+                'Pika': '⚡',
+                'Stable Video': '🎯',
+                'Unknown': '❓'
+            };
+            return icons[tool] || '❓';
+        }
+
+        // Get score class for styling
+        function getScoreClass(score) {
+            if (score >= 8) return 'excellent';
+            if (score >= 6) return 'good';
+            if (score >= 4) return 'average';
+            return 'poor';
+        }
+
+        // Play video function
+        function playVideo(videoId) {
+            console.log('Play video clicked:', videoId);
+            const video = document.querySelector(`[data-id="${videoId}"] video`);
+            if (video) {
+                if (video.paused) {
+                    video.play();
+                    console.log('Video started playing');
+                } else {
+                    video.pause();
+                    console.log('Video paused');
+                }
+            } else {
+                console.log('Video element not found for ID:', videoId);
+            }
+        }
+
+        // Open video in fullscreen modal
+        function openVideoModal(videoId) {
+            const videoData = videos.find(v => v.id == videoId);
+            if (!videoData) return;
+
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay video-modal';
+            modal.innerHTML = `
+                <div class="video-modal-content">
+                    <div class="video-modal-header">
+                        <h3>${videoData.name}</h3>
+                        <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">×</button>
+                    </div>
+                    <div class="video-modal-body">
+                        <video controls autoplay muted playsinline style="width: 100%; height: auto; max-height: 70vh;">
+                            <source src="${videoData.url}" type="${videoData.file ? videoData.file.type : 'video/mp4'}">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-modal-info">
+                            <div class="modal-score-display">
+                                <div class="score-circle ${getScoreClass(Object.values(videoData.metrics || {}).reduce((a, b) => a + b, 0) / Object.values(videoData.metrics || {}).length)}">
+                                    <span class="score-number">${(Object.values(videoData.metrics || {}).reduce((a, b) => a + b, 0) / Object.values(videoData.metrics || {}).length).toFixed(1)}</span>
+                                    <span class="score-label">/10</span>
+                                </div>
+                                <div class="modal-video-details">
+                                    <p><strong>AI Tool:</strong> ${videoData.aiTool}</p>
+                                    <p><strong>Status:</strong> ${videoData.status}</p>
+                                    <p><strong>Generation Time:</strong> ${videoData.performance.generationTime}s</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            
+            // Auto-close on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    modal.remove();
+                }
+            });
+        }
+
+
+        // Render videos in grid
+        function renderVideos() {
+            const grid = document.getElementById('video-grid');
+            const emptyState = document.getElementById('empty-state');
+            
+            // Update simple stats first
+            updateSimpleStats();
+            
+            if (videos.length === 0) {
+                grid.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            grid.innerHTML = videos.map(video => {
+                return `
+                    <div class="video-card" data-id="${video.id}">
+                        <div class="video-container">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="${video.url}" type="${video.file ? video.file.type : 'video/mp4'}">
+                                Your browser does not support the video tag.
+                            </video>
+                            <button class="play-overlay" onclick="playVideo('${video.id}')" title="Play video">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5,3 19,12 5,21"></polygon>
+                                </svg>
+                            </button>
+                            <button class="delete-button" onclick="deleteVideo('${video.id}')" title="Delete video">×</button>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-title">${video.name}</div>
+                            <div class="video-meta">
+                                ${(video.size / (1024 * 1024)).toFixed(1)} MB • 
+                                ${new Date(video.uploadDate).toLocaleDateString()}
+                            </div>
+                            <div class="video-actions">
+                                <button class="btn-small" onclick="openAnalysisModal('${video.id}')">Analyze</button>
+                                <button class="btn-small" onclick="openEditModal('${video.id}')">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Update simple stats
+            updateSimpleStats();
+        }
+
+        // Delete video
+        function deleteVideo(id) {
+            console.log('Attempting to delete video:', id);
+            const videoIndex = videos.findIndex(v => v.id == id);
+            if (videoIndex !== -1) {
+                const video = videos[videoIndex];
+                console.log('Found video to delete:', video);
+                
+                // Revoke the object URL to free memory
+                if (video.url) {
+                    URL.revokeObjectURL(video.url);
+                }
+                
+                // Remove from array
+                videos.splice(videoIndex, 1);
+                
+                // Save and re-render
+                saveVideos();
+                renderVideos();
+                showToast('Video deleted successfully');
+            } else {
+                console.log('Video not found with id:', id);
+                showToast('Video not found', 'error');
+            }
+        }
+
+        // Setup drag and drop
+        function setupDragAndDrop() {
+            const uploadSection = document.getElementById('upload-section');
+            
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadSection.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadSection.addEventListener(eventName, () => {
+                    uploadSection.classList.add('dragover');
+                });
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadSection.addEventListener(eventName, () => {
+                    uploadSection.classList.remove('dragover');
+                });
+            });
+            
+            uploadSection.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
+                handleFileUpload(files);
+            });
+        }
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        // Clear all videos function
+        function clearAllVideos() {
+            if (confirm('Are you sure you want to delete all videos? This cannot be undone.')) {
+                videos.forEach(video => {
+                    if (video.url) {
+                        URL.revokeObjectURL(video.url);
+                    }
+                });
+                videos = [];
+                saveVideos();
+                renderVideos();
+                showToast('All videos deleted');
+            }
+        }
+
+        // Open analysis modal
+        function openAnalysisModal(videoId) {
+            const video = videos.find(v => v.id == videoId);
+            if (!video) return;
+
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Performance Analysis: ${video.name}</h3>
+                        <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="analysis-grid">
+                            <div class="analysis-section">
+                                <h4>🎯 Quality Metrics</h4>
+                                <div class="metric">
+                                    <label>Overall Quality:</label>
+                                    <input type="range" min="0" max="10" value="${video.metrics.quality}" onchange="updateMetric('${videoId}', 'quality', this.value)">
+                                    <span>${video.metrics.quality}/10</span>
+                                </div>
+                                <div class="metric">
+                                    <label>Engagement Potential:</label>
+                                    <input type="range" min="0" max="10" value="${video.metrics.engagement}" onchange="updateMetric('${videoId}', 'engagement', this.value)">
+                                    <span>${video.metrics.engagement}/10</span>
+                                </div>
+                                <div class="metric">
+                                    <label>Message Clarity:</label>
+                                    <input type="range" min="0" max="10" value="${video.metrics.clarity}" onchange="updateMetric('${videoId}', 'clarity', this.value)">
+                                    <span>${video.metrics.clarity}/10</span>
+                                </div>
+                                <div class="metric">
+                                    <label>Brand Alignment:</label>
+                                    <input type="range" min="0" max="10" value="${video.metrics.brandAlignment}" onchange="updateMetric('${videoId}', 'brandAlignment', this.value)">
+                                    <span>${video.metrics.brandAlignment}/10</span>
+                                </div>
+                                <div class="metric">
+                                    <label>Technical Execution:</label>
+                                    <input type="range" min="0" max="10" value="${video.metrics.technicalExecution}" onchange="updateMetric('${videoId}', 'technicalExecution', this.value)">
+                                    <span>${video.metrics.technicalExecution}/10</span>
+                                </div>
+                            </div>
+                            <div class="analysis-section">
+                                <h4>📊 Performance Data</h4>
+                                <div class="performance-data">
+                                    <div class="data-item">
+                                        <label>AI Tool:</label>
+                                        <select onchange="updateField('${videoId}', 'aiTool', this.value)">
+                                            <option value="Unknown" ${video.aiTool === 'Unknown' ? 'selected' : ''}>Unknown</option>
+                                            <option value="Sora" ${video.aiTool === 'Sora' ? 'selected' : ''}>Sora</option>
+                                            <option value="Runway" ${video.aiTool === 'Runway' ? 'selected' : ''}>Runway</option>
+                                            <option value="Pika" ${video.aiTool === 'Pika' ? 'selected' : ''}>Pika</option>
+                                            <option value="Stable Video" ${video.aiTool === 'Stable Video' ? 'selected' : ''}>Stable Video</option>
+                                        </select>
+                                    </div>
+                                    <div class="data-item">
+                                        <label>Status:</label>
+                                        <select onchange="updateField('${videoId}', 'status', this.value)">
+                                            <option value="pending" ${video.status === 'pending' ? 'selected' : ''}>Pending</option>
+                                            <option value="success" ${video.status === 'success' ? 'selected' : ''}>Success</option>
+                                            <option value="defect" ${video.status === 'defect' ? 'selected' : ''}>Defect</option>
+                                        </select>
+                                    </div>
+                                    <div class="data-item">
+                                        <label>Generation Time:</label>
+                                        <input type="number" value="${video.performance.generationTime}" onchange="updateField('${videoId}', 'generationTime', this.value)"> seconds
+                                    </div>
+                                    <div class="data-item">
+                                        <label>Iterations:</label>
+                                        <input type="number" value="${video.performance.iterations}" onchange="updateField('${videoId}', 'iterations', this.value)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="analysis-section">
+                                <h4>📝 Analysis Notes</h4>
+                                <textarea placeholder="Add your analysis notes here..." onchange="updateField('${videoId}', 'notes', this.value)">${video.performance.notes}</textarea>
+                                <textarea placeholder="Prompt used for this video..." onchange="updateField('${videoId}', 'prompt', this.value)">${video.prompt}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-primary" onclick="saveAnalysis('${videoId}'); this.closest('.modal-overlay').remove();">Save Analysis</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Update metric value
+        function updateMetric(videoId, metric, value) {
+            const video = videos.find(v => v.id == videoId);
+            if (video) {
+                video.metrics[metric] = parseInt(value);
+                // Update the span display
+                event.target.nextElementSibling.textContent = `${value}/10`;
+            }
+        }
+
+        // Update field value
+        function updateField(videoId, field, value) {
+            const video = videos.find(v => v.id == videoId);
+            if (video) {
+                if (field === 'generationTime' || field === 'iterations') {
+                    video.performance[field] = parseInt(value);
+                } else {
+                    video[field] = value;
+                }
+            }
+        }
+
+        // Save analysis
+        function saveAnalysis(videoId) {
+            const video = videos.find(v => v.id == videoId);
+            if (video) {
+                // Calculate success rate based on average metrics
+                const avgScore = Object.values(video.metrics).reduce((a, b) => a + b, 0) / Object.values(video.metrics).length;
+                video.performance.successRate = Math.round(avgScore * 10);
+                
+                // Auto-determine status based on score
+                if (avgScore >= 7) {
+                    video.status = 'success';
+                } else if (avgScore <= 4) {
+                    video.status = 'defect';
+                } else {
+                    video.status = 'pending';
+                }
+                
+                saveVideos();
+                renderVideos();
+                showToast('Analysis saved successfully!');
+            }
+        }
+
+        // Open edit modal (simplified version)
+        function openEditModal(videoId) {
+            const video = videos.find(v => v.id == videoId);
+            if (!video) return;
+
+            const newName = prompt('Edit video name:', video.name);
+            if (newName && newName !== video.name) {
+                video.name = newName;
+                saveVideos();
+                renderVideos();
+                showToast('Video name updated!');
+            }
+        }
+
+        // Smooth scroll function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Scroll animations
+        function setupScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe timeline items
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                observer.observe(item);
+            });
+
+            // Observe method cards
+            document.querySelectorAll('.method-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // Observe video cards
+            document.querySelectorAll('.video-card').forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        // Add click animations to cards
+        function setupCardAnimations() {
+            document.querySelectorAll('.method-card, .video-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Create ripple effect
+                    const ripple = document.createElement('div');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(99, 102, 241, 0.3);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s ease-out;
+                        pointer-events: none;
+                        z-index: 1;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        }
+
+        // Add CSS for ripple animation
+        function addRippleCSS() {
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadVideos();
+            setupDragAndDrop();
+            setupScrollAnimations();
+            setupCardAnimations();
+            addRippleCSS();
+            
+            // File input change
+            document.getElementById('file-input').addEventListener('change', function(e) {
+                handleFileUpload(e.target.files);
+            });
+
+            // Navigation scroll
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        scrollToSection(href.substring(1));
+                    }
+                });
+            });
+
+            // Add smooth scroll to CTA button
+            document.querySelector('.cta-button').addEventListener('click', function() {
+                scrollToSection('showcase');
+            });
+        });
+    </script>
+</body>
+</html>

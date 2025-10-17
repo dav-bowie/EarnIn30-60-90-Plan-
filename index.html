@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarnIn — AI Marketing Mini Showcase</title>
+    <meta name="description" content="Where creativity meets AI precision in live-action advertising">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h2>EarnIn AI Showcase</h2>
+            </div>
+            <div class="nav-links">
+                <a href="#process" class="nav-link">Process</a>
+                <a href="#showcase" class="nav-link">Showcase</a>
+                <a href="#methodology" class="nav-link">Methodology</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line-1">AI Marketing</span>
+                    <span class="title-line-2">Mini Showcase</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Where creativity meets AI precision in live-action advertising
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">AI Videos</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5-9s</span>
+                        <span class="stat-label">Duration</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">AI Generated</span>
+                    </div>
+                </div>
+                <button class="cta-button" onclick="scrollToSection('showcase')">
+                    Explore Showcase
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 12L3 7L4.4 5.6L8 9.2L11.6 5.6L13 7L8 12Z" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Timeline Section -->
+    <section id="process" class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>My AI Content Creation Process</h2>
+                <p>From concept to execution: How I orchestrate AI-generated marketing content</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item" data-step="1">
+                    <div class="timeline-marker">
+                        <span class="step-number">01</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Structure & Requirements</h3>
+                        <p>Define measurable fields, constraints, and deterministic levers upfront</p>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Duration, framing, objects, actions</li>
+                                <li>Seed, style library, brand colors</li>
+                                <li>Negative prompts and constraints</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-step="2">
+                    <div class="timeline-marker">
+                        <span class="step-number">02</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>JSON Prompt Architecture</h3>
+                        <p>Transform ideas into structured, repeatable JSON prompts</p>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>1-sentence logline definition</li>
+                                <li>3-5 story beats mapped to scenes</li>
+                                <li>Environment, intent, and shot specifications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-step="3">
+                    <div class="timeline-marker">
+                        <span class="step-number">03</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Director Thinking</h3>
+                        <p>Think like a director orchestrating the entire production</p>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Narrative in scenes, precision in shots</li>
+                                <li>Audio master with VO timestamps</li>
+                                <li>Music hit points and timing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-step="4">
+                    <div class="timeline-marker">
+                        <span class="step-number">04</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>AI Tool Orchestration</h3>
+                        <p>Leverage multiple AI tools for optimal results</p>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Sora, Flow, Gemini, Veo3, ChatGPT</li>
+                                <li>Canva for design elements</li>
+                                <li>Platform-specific optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-step="5">
+                    <div class="timeline-marker">
+                        <span class="step-number">05</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Quality Assurance</h3>
+                        <p>Sanity check timing and export settings</p>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Sum of scenes + transitions ≈ total duration</li>
+                                <li>CTA endcard integration</li>
+                                <li>Export settings optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JSON Methodology Section -->
+    <section id="methodology" class="methodology-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>JSON Prompt Methodology</h2>
+                <p>My repeatable method for turning any idea into structured AI prompts</p>
+            </div>
+            
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <div class="method-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 7H21M3 12H21M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Write the Logline</h3>
+                    <p>Start with a clear 1-sentence concept that captures the core message</p>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M9 9H15V15H9V9Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Define Constraints</h3>
+                    <p>Duration, platform, aspect ratio, brand tone - set boundaries upfront</p>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Map Story Beats</h3>
+                    <p>Outline 3-5 story beats and map them to specific scenes</p>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Define Shots</h3>
+                    <p>For each scene: environment, intent, and exact shots with durations</p>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke="currentColor" stroke-width="2"/>
+                            <path d="M19.07 4.93L20.5 6.36C21.32 7.18 21.32 8.52 20.5 9.34L19.07 10.77" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Audio Master</h3>
+                    <p>Add VO timestamps and music hit points for perfect sync</p>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Global Controls</h3>
+                    <p>Seed, fps, negative prompts to keep outputs stable and consistent</p>
+                </div>
+            </div>
+            
+            <div class="json-example">
+                <h3>Example JSON Structure</h3>
+                <div class="code-block">
+                    <pre><code>{
+  "logline": "Morning café worker discovers instant cash access",
+  "constraints": {
+    "duration": "15s",
+    "platform": "TikTok",
+    "aspect_ratio": "9:16",
+    "brand_tone": "Empowering"
+  },
+  "story_beats": [
+    "Morning routine setup",
+    "Financial stress moment", 
+    "EarnIn discovery",
+    "Instant relief",
+    "Call to action"
+  ],
+  "scenes": [
+    {
+      "environment": "Café kitchen",
+      "intent": "Establish routine",
+      "shots": ["Wide establishing", "Close-up hands"],
+      "duration": "3s"
+    }
+  ],
+  "audio_master": {
+    "vo_timestamps": [0, 5, 10],
+    "music_hit_points": [2, 8, 14]
+  },
+  "global_controls": {
+    "seed": 42,
+    "fps": 24,
+    "negative_prompts": ["blurry", "low quality"]
+  }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Showcase Section -->
+    <section id="showcase" class="showcase-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI-Generated Video Portfolio</h2>
+                <p>Explore my collection of AI-crafted marketing content</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search campaigns...">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M7 14C10.866 14 14 10.866 14 7C14 3.134 10.866 0 7 0C3.134 0 0 3.134 0 7C0 10.866 3.134 14 7 14Z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M15 15L11.5 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                
+                <div class="filter-groups">
+                    <div class="filter-group">
+                        <span class="filter-label">Theme:</span>
+                        <div class="filter-tags">
+                            <button class="filter-tag" data-filter="theme" data-value="Relief">Relief</button>
+                            <button class="filter-tag" data-filter="theme" data-value="Empowerment">Empowerment</button>
+                            <button class="filter-tag" data-filter="theme" data-value="Control">Control</button>
+                            <button class="filter-tag" data-filter="theme" data-value="Freedom">Freedom</button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <span class="filter-label">Style:</span>
+                        <div class="filter-tags">
+                            <button class="filter-tag" data-filter="style" data-value="Live Action">Live Action</button>
+                            <button class="filter-tag" data-filter="style" data-value="Hybrid">Hybrid</button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <span class="filter-label">Ratio:</span>
+                        <div class="filter-tags">
+                            <button class="filter-tag" data-filter="ratio" data-value="9:16">9:16</button>
+                            <button class="filter-tag" data-filter="ratio" data-value="16:9">16:9</button>
+                            <button class="filter-tag" data-filter="ratio" data-value="1:1">1:1</button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <span class="filter-label">Platform:</span>
+                        <div class="filter-tags">
+                            <button class="filter-tag" data-filter="platform" data-value="TikTok">TikTok</button>
+                            <button class="filter-tag" data-filter="platform" data-value="Reels">Reels</button>
+                            <button class="filter-tag" data-filter="platform" data-value="Shorts">Shorts</button>
+                            <button class="filter-tag" data-filter="platform" data-value="CTV">CTV</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Grid -->
+            <div class="video-grid" id="video-grid">
+                <!-- Videos will be populated by JavaScript -->
+            </div>
+
+            <!-- Upload Button -->
+            <div class="upload-section">
+                <button class="upload-button" onclick="openUploadModal()">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2V18M2 10H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Upload New Video
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Upload Modal -->
+    <div class="modal-overlay" id="upload-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Upload AI-Generated Video</h3>
+                <button class="close-btn" onclick="closeUploadModal()">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                            <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="10,9 9,9 8,9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <p>Drag & drop your video here, or <span class="upload-link">browse files</span></p>
+                    <input type="file" id="video-file-input" accept="video/*" style="display: none;">
+                </div>
+                
+                <div class="form-group">
+                    <label for="video-title">Video Title</label>
+                    <input type="text" id="video-title" placeholder="Enter video title">
+                </div>
+                
+                <div class="form-group">
+                    <label for="video-description">Description</label>
+                    <textarea id="video-description" placeholder="Describe the video concept and AI tools used"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="video-duration">Duration</label>
+                        <input type="text" id="video-duration" placeholder="e.g., 15s">
+                    </div>
+                    <div class="form-group">
+                        <label for="video-ratio">Aspect Ratio</label>
+                        <select id="video-ratio">
+                            <option value="9:16">9:16</option>
+                            <option value="16:9">16:9</option>
+                            <option value="1:1">1:1</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="video-platform">Platform</label>
+                        <select id="video-platform">
+                            <option value="TikTok">TikTok</option>
+                            <option value="Reels">Reels</option>
+                            <option value="Shorts">Shorts</option>
+                            <option value="CTV">CTV</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="video-theme">Theme</label>
+                        <select id="video-theme">
+                            <option value="Relief">Relief</option>
+                            <option value="Empowerment">Empowerment</option>
+                            <option value="Control">Control</option>
+                            <option value="Freedom">Freedom</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="json-prompt">JSON Prompt Used</label>
+                    <textarea id="json-prompt" placeholder="Paste your JSON prompt structure here"></textarea>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeUploadModal()">Cancel</button>
+                    <button class="btn btn-primary" onclick="uploadVideo()">Upload Video</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Detail Modal -->
+    <div class="modal-overlay" id="video-detail-modal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3 id="detail-modal-title">Video Details</h3>
+                <button class="close-btn" onclick="closeVideoDetailModal()">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="video-detail-grid">
+                    <div class="video-player-section">
+                        <video id="detail-video" controls>
+                            <source src="" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-info-section">
+                        <div class="video-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">Duration:</span>
+                                <span id="detail-duration">-</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Aspect Ratio:</span>
+                                <span id="detail-ratio">-</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Platform:</span>
+                                <span id="detail-platform">-</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Theme:</span>
+                                <span id="detail-theme">-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ai-tools-used">
+                            <h4>AI Tools Used</h4>
+                            <div class="tools-list" id="detail-tools">
+                                <!-- Tools will be populated -->
+                            </div>
+                        </div>
+                        
+                        <div class="json-prompt-section">
+                            <h4>JSON Prompt Structure</h4>
+                            <div class="code-block">
+                                <pre id="detail-json-prompt"><code></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AI Marketing Intern Candidate</h3>
+                    <p>Ready to bring AI precision to your marketing campaigns</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Skills Demonstrated</h4>
+                    <ul>
+                        <li>AI Tool Orchestration</li>
+                        <li>JSON Prompt Architecture</li>
+                        <li>Director-Level Thinking</li>
+                        <li>Creative Process Optimization</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Tools Mastered</h4>
+                    <ul>
+                        <li>Sora, Flow, Gemini</li>
+                        <li>Veo3, Veo2, ChatGPT</li>
+                        <li>Canva, Creative Suites</li>
+                        <li>Multi-Platform Optimization</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Marketing Mini Showcase. Built with precision and creativity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/simple-storage.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/video-handler.js"></script>
+    <script src="scripts/modal-handler.js"></script>
+</body>
+</html>

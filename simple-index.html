@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarnIn AI Marketing Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .upload-section {
+            background: white;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .upload-section:hover {
+            border-color: #6366f1;
+            background: #f8fafc;
+        }
+
+        .upload-section.dragover {
+            border-color: #6366f1;
+            background: #eef2ff;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #6366f1;
+            margin-bottom: 20px;
+        }
+
+        .upload-text {
+            font-size: 1.2rem;
+            color: #475569;
+            margin-bottom: 20px;
+        }
+
+        .upload-button {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .upload-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9/16;
+            background: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-info {
+            padding: 16px;
+        }
+
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .video-meta {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .delete-button {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #10b981;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.error {
+            border-left-color: #ef4444;
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>EarnIn AI Marketing Showcase</h1>
+            <p>Upload and showcase your AI-generated marketing videos</p>
+        </div>
+
+        <div class="upload-section" id="upload-section">
+            <div class="upload-icon">📹</div>
+            <div class="upload-text">Drag & drop your video here, or click to browse</div>
+            <button class="upload-button" onclick="document.getElementById('file-input').click()">
+                Choose Video File
+            </button>
+            <input type="file" id="file-input" class="file-input" accept="video/*" multiple>
+        </div>
+
+        <div class="video-grid" id="video-grid">
+            <!-- Videos will be added here -->
+        </div>
+
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <h3>No videos yet</h3>
+            <p>Upload your first AI-generated video to get started</p>
+        </div>
+    </div>
+
+    <script>
+        // Simple video storage
+        let videos = [];
+
+        // Load videos from localStorage on page load
+        function loadVideos() {
+            const stored = localStorage.getItem('earnin-videos');
+            if (stored) {
+                try {
+                    videos = JSON.parse(stored);
+                    renderVideos();
+                } catch (error) {
+                    console.error('Error loading videos:', error);
+                }
+            }
+        }
+
+        // Save videos to localStorage
+        function saveVideos() {
+            localStorage.setItem('earnin-videos', JSON.stringify(videos));
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <span>${message}</span>
+                    <button class="toast-close" onclick="this.parentElement.parentElement.remove()">×</button>
+                </div>
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Handle file upload
+        function handleFileUpload(files) {
+            Array.from(files).forEach(file => {
+                if (file.type.startsWith('video/')) {
+                    const videoUrl = URL.createObjectURL(file);
+                    const video = {
+                        id: Date.now() + Math.random(),
+                        name: file.name,
+                        url: videoUrl,
+                        size: file.size,
+                        uploadDate: new Date().toISOString()
+                    };
+                    
+                    videos.push(video);
+                    saveVideos();
+                    renderVideos();
+                    showToast(`Video "${file.name}" uploaded successfully!`);
+                } else {
+                    showToast('Please select a video file', 'error');
+                }
+            });
+        }
+
+        // Render videos in grid
+        function renderVideos() {
+            const grid = document.getElementById('video-grid');
+            const emptyState = document.getElementById('empty-state');
+            
+            if (videos.length === 0) {
+                grid.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            grid.innerHTML = videos.map(video => `
+                <div class="video-card">
+                    <div class="video-container">
+                        <video controls muted playsinline>
+                            <source src="${video.url}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <button class="delete-button" onclick="deleteVideo('${video.id}')">×</button>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">${video.name}</div>
+                        <div class="video-meta">
+                            ${(video.size / (1024 * 1024)).toFixed(1)} MB • 
+                            ${new Date(video.uploadDate).toLocaleDateString()}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Delete video
+        function deleteVideo(id) {
+            const video = videos.find(v => v.id == id);
+            if (video) {
+                URL.revokeObjectURL(video.url);
+                videos = videos.filter(v => v.id != id);
+                saveVideos();
+                renderVideos();
+                showToast('Video deleted');
+            }
+        }
+
+        // Setup drag and drop
+        function setupDragAndDrop() {
+            const uploadSection = document.getElementById('upload-section');
+            
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadSection.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadSection.addEventListener(eventName, () => {
+                    uploadSection.classList.add('dragover');
+                });
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadSection.addEventListener(eventName, () => {
+                    uploadSection.classList.remove('dragover');
+                });
+            });
+            
+            uploadSection.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
+                handleFileUpload(files);
+            });
+        }
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadVideos();
+            setupDragAndDrop();
+            
+            // File input change
+            document.getElementById('file-input').addEventListener('change', function(e) {
+                handleFileUpload(e.target.files);
+            });
+        });
+    </script>
+</body>
+</html>
