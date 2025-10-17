@@ -6,7 +6,7 @@ A professional portfolio showcasing AI-generated marketing content with a Netlif
 
 - **Netlify-Style Gallery**: Clean, professional video gallery layout
 - **JSON Prompt Methodology**: Structured approach to AI content creation
-- **Multiple AI Tools**: Support for Sora, Veo, Flow, Gemini, ChatGPT, Canva
+- **Multiple AI Tools**: Support for Sora, Veo3, ChatGPT, Gemini, Other
 - **Performance Analytics**: Built-in video analysis and scoring
 - **Responsive Design**: Works on desktop, tablet, and mobile
 - **Local Storage**: Videos persist in browser session
