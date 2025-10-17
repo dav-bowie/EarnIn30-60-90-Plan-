@@ -1,6 +1,7 @@
-// Netlify-Style Portfolio JavaScript
+// Viewer-Only Portfolio JavaScript
 let videos = [];
 let filteredVideos = [];
+let isAdmin = false;
 
 // Initialize the portfolio
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,9 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Setup event listeners
 function setupEventListeners() {
-    // File input change
-    document.getElementById('file-input').addEventListener('change', handleFileUpload);
-    
     // Search functionality
     document.getElementById('search-input').addEventListener('input', filterVideos);
     
@@ -34,13 +32,73 @@ function setupEventListeners() {
     });
 }
 
-// Upload videos function
+// Show admin login modal
+function showAdminLogin() {
+    document.getElementById('admin-modal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+// Close admin modal
+function closeAdminModal() {
+    document.getElementById('admin-modal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+    document.getElementById('admin-password').value = '';
+}
+
+// Check admin password
+function checkAdminPassword() {
+    const password = document.getElementById('admin-password').value;
+    // Simple password check - in production, use proper authentication
+    if (password === 'admin123' || password === 'earnin2024') {
+        isAdmin = true;
+        closeAdminModal();
+        showAdminPanel();
+        showNotification('Admin access granted', 'success');
+    } else {
+        showNotification('Invalid password', 'error');
+    }
+}
+
+// Show admin panel
+function showAdminPanel() {
+    const adminBtn = document.getElementById('admin-btn');
+    adminBtn.innerHTML = '<i class="fas fa-upload"></i> Upload Videos';
+    adminBtn.onclick = uploadVideos;
+    
+    // Add clear button to gallery
+    const galleryControls = document.querySelector('.gallery-controls');
+    if (!document.getElementById('gallery-clear-btn')) {
+        const clearBtn = document.createElement('button');
+        clearBtn.id = 'gallery-clear-btn';
+        clearBtn.className = 'btn-clear';
+        clearBtn.innerHTML = '<i class="fas fa-trash-alt"></i> Clear All Videos';
+        clearBtn.onclick = clearAllVideos;
+        galleryControls.appendChild(clearBtn);
+    }
+}
+
+// Upload videos function (admin only)
 function uploadVideos() {
-    document.getElementById('file-input').click();
+    if (!isAdmin) {
+        showNotification('Admin access required', 'error');
+        return;
+    }
+    
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.multiple = true;
+    input.accept = 'video/*';
+    input.onchange = handleFileUpload;
+    input.click();
 }
 
 // Handle file upload with base64 conversion for persistence
 function handleFileUpload(event) {
+    if (!isAdmin) {
+        showNotification('Admin access required', 'error');
+        return;
+    }
+    
     const files = event.target.files;
     if (files.length === 0) return;
     
@@ -88,9 +146,6 @@ function handleFileUpload(event) {
             showNotification('Please select a video file', 'error');
         }
     });
-    
-    // Reset file input
-    event.target.value = '';
 }
 
 // Detect AI tool from filename and folder structure
@@ -125,7 +180,7 @@ function renderVideos() {
             <div class="empty-state">
                 <i class="fas fa-video"></i>
                 <h3>No videos yet</h3>
-                <p>Upload your AI-generated marketing videos to start building your portfolio</p>
+                <p>Videos will appear here once uploaded by the admin</p>
             </div>
         `;
         return;
@@ -161,9 +216,9 @@ function renderVideos() {
                         <button class="btn-small" onclick="event.stopPropagation(); downloadVideo('${video.id}')">
                             <i class="fas fa-download"></i> Download
                         </button>
-                        <button class="btn-small btn-delete" onclick="event.stopPropagation(); deleteVideo('${video.id}')">
+                        ${isAdmin ? `<button class="btn-small btn-delete" onclick="event.stopPropagation(); deleteVideo('${video.id}')">
                             <i class="fas fa-trash"></i> Delete
-                        </button>
+                        </button>` : ''}
                     </div>
                 </div>
             </div>
@@ -213,7 +268,7 @@ function openVideoModal(videoId) {
     const modalTitle = document.getElementById('modal-title');
     const modalDescription = document.getElementById('modal-description');
     
-    modalVideo.src = video.url;
+    modalVideo.src = video.data || video.url;
     modalTitle.textContent = video.name;
     modalDescription.innerHTML = `
         <strong>AI Tool:</strong> ${video.aiTool}<br>
@@ -469,13 +524,18 @@ function downloadVideo(videoId) {
     if (!video) return;
     
     const link = document.createElement('a');
-    link.href = video.url;
+    link.href = video.data || video.url;
     link.download = video.name;
     link.click();
 }
 
-// Delete individual video
+// Delete individual video (admin only)
 function deleteVideo(videoId) {
+    if (!isAdmin) {
+        showNotification('Admin access required', 'error');
+        return;
+    }
+    
     const video = videos.find(v => v.id == videoId);
     if (!video) {
         showNotification('Video not found', 'error');
@@ -483,11 +543,6 @@ function deleteVideo(videoId) {
     }
     
     if (confirm(`Are you sure you want to delete "${video.name}"?\n\nThis action cannot be undone.`)) {
-        // Revoke object URL to free memory if it exists
-        if (video.url && video.url.startsWith('blob:')) {
-            URL.revokeObjectURL(video.url);
-        }
-        
         // Remove from main videos array
         const videoIndex = videos.findIndex(v => v.id == videoId);
         if (videoIndex !== -1) {
@@ -534,18 +589,6 @@ function updateStats() {
         const avgSuccessRate = videos.reduce((sum, v) => sum + v.performance.successRate, 0) / videos.length;
         document.getElementById('success-rate').textContent = Math.round(avgSuccessRate) + '%';
     }
-    
-    // Show/hide clear buttons based on video count
-    const clearBtn = document.getElementById('clear-btn');
-    const galleryClearBtn = document.getElementById('gallery-clear-btn');
-    
-    if (videos.length > 0) {
-        clearBtn.style.display = 'flex';
-        galleryClearBtn.style.display = 'flex';
-    } else {
-        clearBtn.style.display = 'none';
-        galleryClearBtn.style.display = 'none';
-    }
 }
 
 // Save videos to localStorage
@@ -553,9 +596,11 @@ function saveVideos() {
     const videosToSave = videos.map(video => ({
         id: video.id,
         name: video.name,
-        url: video.url,
+        data: video.data, // Base64 data for persistence
+        url: video.url, // Legacy support
         size: video.size,
         uploadDate: video.uploadDate,
+        type: video.type,
         aiTool: video.aiTool,
         status: video.status,
         metrics: video.metrics,
@@ -590,6 +635,42 @@ function loadVideos() {
             console.error('Error loading videos:', error);
             videos = [];
         }
+    }
+}
+
+// Clear all videos (admin only)
+function clearAllVideos() {
+    if (!isAdmin) {
+        showNotification('Admin access required', 'error');
+        return;
+    }
+    
+    if (videos.length === 0) {
+        showNotification('No videos to clear', 'info');
+        return;
+    }
+    
+    const videoCount = videos.length;
+    const confirmMessage = `Are you sure you want to clear all ${videoCount} video${videoCount > 1 ? 's' : ''}?\n\nThis action cannot be undone and will remove:\n• All uploaded videos\n• All analysis data\n• All performance metrics`;
+    
+    if (confirm(confirmMessage)) {
+        // Clear arrays
+        videos = [];
+        filteredVideos = [];
+        
+        // Clear localStorage
+        localStorage.removeItem('earnin-portfolio-videos');
+        
+        // Re-render and update
+        renderVideos();
+        updateStats();
+        
+        // Show success message
+        showNotification(`Successfully cleared all ${videoCount} video${videoCount > 1 ? 's' : ''}`, 'success');
+        
+        // Close any open modals
+        closeModal();
+        closeAnalysisModal();
     }
 }
 
@@ -632,77 +713,12 @@ function showNotification(message, type = 'info') {
     }, 3000);
 }
 
-// Export portfolio data
-function exportPortfolio() {
-    const portfolioData = {
-        videos: videos,
-        exportDate: new Date().toISOString(),
-        totalVideos: videos.length,
-        aiTools: [...new Set(videos.map(v => v.aiTool))],
-        averageScore: videos.length > 0 ? 
-            videos.reduce((sum, v) => sum + calculateAverageScore(v.metrics), 0) / videos.length : 0
-    };
-    
-    const dataStr = JSON.stringify(portfolioData, null, 2);
-    const dataBlob = new Blob([dataStr], {type: 'application/json'});
-    const url = URL.createObjectURL(dataBlob);
-    
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'earnin-portfolio-data.json';
-    link.click();
-    
-    URL.revokeObjectURL(url);
-}
-
-// Clear all videos
-function clearAllVideos() {
-    if (videos.length === 0) {
-        showNotification('No videos to clear', 'info');
-        return;
-    }
-    
-    const videoCount = videos.length;
-    const confirmMessage = `Are you sure you want to clear all ${videoCount} video${videoCount > 1 ? 's' : ''}?\n\nThis action cannot be undone and will remove:\n• All uploaded videos\n• All analysis data\n• All performance metrics`;
-    
-    if (confirm(confirmMessage)) {
-        // Revoke all object URLs to free memory
-        videos.forEach(video => {
-            if (video.url && video.url.startsWith('blob:')) {
-                URL.revokeObjectURL(video.url);
-            }
-        });
-        
-        // Clear arrays
-        videos = [];
-        filteredVideos = [];
-        
-        // Clear localStorage
-        localStorage.removeItem('earnin-portfolio-videos');
-        
-        // Re-render and update
-        renderVideos();
-        updateStats();
-        
-        // Show success message
-        showNotification(`Successfully cleared all ${videoCount} video${videoCount > 1 ? 's' : ''}`, 'success');
-        
-        // Close any open modals
-        closeModal();
-        closeAnalysisModal();
-    }
-}
-
 // Keyboard shortcuts
 document.addEventListener('keydown', function(e) {
-    // Escape key closes modal
+    // Escape key closes modals
     if (e.key === 'Escape') {
         closeModal();
-    }
-    
-    // Ctrl/Cmd + U opens upload
-    if ((e.ctrlKey || e.metaKey) && e.key === 'u') {
-        e.preventDefault();
-        uploadVideos();
+        closeAdminModal();
+        closeAnalysisModal();
     }
 });
