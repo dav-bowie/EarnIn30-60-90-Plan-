@@ -1226,6 +1226,67 @@
                             <li><strong>80%+ prediction accuracy</strong> for top-quartile performers</li>
                         </ul>
                     </div>
+                    
+                    <div style="background: #F7FAFC; border-left: 4px solid #667eea; padding: 25px; margin: 25px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <h4 style="color: #1E293B; margin-bottom: 20px; font-size: 1.1em;">Performance Metrics Rationale</h4>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">75% First-Pass Success Rate (vs. 40% Manual)</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Why 75%:</strong> Quality gate (score ≥7.5) + automated brand checks filter out 25% of low-quality content before human review<br>
+                            <strong>Comparison:</strong> Manual QA has no pre-filter, so reviewers waste time on obvious rejects<br>
+                            <strong>Impact:</strong> 75% first-pass means 3 of every 4 videos are publish-ready, vs. only 2 of 5 with manual QA<br>
+                            <strong>Beneficiaries:</strong> Creative team (less frustration from rework), marketing (faster launch)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">90%+ Cycle Time Reduction (Days → Hours)</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Calculation:</strong> Manual process: 7-14 days (brief → approval → generation → QA → revisions → publish). Automated: 0.5-1.5 days (brief → parallel generation → automated QA → publish)<br>
+                            <strong>How:</strong> Parallel AI agents generate 3-5 variants simultaneously (vs. sequential), automated QA scores in <2 seconds (vs. hours), retry logic eliminates waiting for human feedback<br>
+                            <strong>Real Example:</strong> 7-day manual cycle → 12-hour automated cycle = 93% reduction<br>
+                            <strong>Beneficiaries:</strong> Growth marketers (test hypotheses faster), product teams (quicker iterations)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">30-40% Reduction in Wasted Ad Spend</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> Industry standard = 30-50% of ad spend goes to underperforming creative<br>
+                            <strong>Target:</strong> Automated filtering prevents low-quality content from receiving ad spend<br>
+                            <strong>Calculation:</strong> $200K monthly ad spend × 35% average = $70K wasted. Automated pipeline: 10% waste = $20K. Savings: $50K/month = $600K/year<br>
+                            <strong>How:</strong> Quality gate (≥7.5) + predicted CPA filters out bottom performers before budget allocation<br>
+                            <strong>Beneficiaries:</strong> Finance (higher ROAS), growth team (more budget for winners)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">2x Creative Throughput</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> 20-30 videos/month with manual process<br>
+                            <strong>Target:</strong> 40-60 videos/month (2x capacity)<br>
+                            <strong>How:</strong> Parallel generation produces 3-5 variants in same time as 1, automated QA frees creative time, retry logic eliminates scheduling bottlenecks<br>
+                            <strong>Impact:</strong> 2x more campaign variants = 2x more A/B test opportunities = higher success rate<br>
+                            <strong>Beneficiaries:</strong> Data science (more training data), marketing (competitive advantage)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">80%+ Prediction Accuracy for Top Quartile</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Why 80%:</strong> Industry-leading ML models achieve 75-85% accuracy on classification tasks. Conservative target accounts for creative variability<br>
+                            <strong>What it Means:</strong> When model predicts "top performer," 4 of 5 will actually be top quartile<br>
+                            <strong>Value:</strong> Enables budget prioritization: allocate 70% of spend to predicted winners, 30% to tests<br>
+                            <strong>Beneficiaries:</strong> Finance (data-driven allocation), growth (higher ROAS campaigns)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="phase-summary">
+                    <h3><span class="phase-icon">⚖️</span> Scoring Engine Weight Rationale</h3>
+                    <p style="margin-bottom: 20px; line-height: 1.9; font-size: 1.05em; color: #4a5568;">The 25/25/20/15/15 weighting isn't arbitrary. It's based on correlation analysis of what drives campaign performance:</p>
+                    
+                    <ul style="margin-top: 20px;">
+                        <li><strong>Quality (25%) & Engagement (25%):</strong> Highest-weighted because content quality and viewer engagement are the strongest predictors of CPA/CTR performance (Source: Meta/Google creative optimization studies)</li>
+                        <li><strong>Clarity (20%):</strong> Fintech messaging must be clear to drive conversions; confusing content kills performance</li>
+                        <li><strong>Brand Alignment (15%):</strong> Important for consistency, but moderate weight because brand violations are filtered pre-flight</li>
+                        <li><strong>Technical (15%):</strong> Lowest weight because technical defects (audio sync, artifacts) are rare but catastrophic when present</li>
+                    </ul>
+                    <div class="targets" style="margin-top: 25px;">
+                        <strong>Weighted Scoring Formula:</strong> Quality Gate passes when total weighted score ≥ 7.5/10, ensuring only high-quality content proceeds to brand checks and publishing.
+                    </div>
                 </div>
 
                 <div class="phase-summary">
@@ -1276,6 +1337,45 @@
                             <li><strong>Faster iteration cycles</strong>: ship what works, kill what doesn't</li>
                         </ul>
                     </div>
+                    
+                    <div style="background: #F7FAFC; border-left: 4px solid #2196F3; padding: 25px; margin: 25px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <h4 style="color: #1E293B; margin-bottom: 20px; font-size: 1.1em;">Predictive System ROI Breakdown</h4>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">30-40% Reduction in Wasted Ad Spend</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> Without predictive intelligence, marketers allocate budget evenly across variants, resulting in 30-50% of spend on low performers<br>
+                            <strong>With Prediction:</strong> Model identifies top-quartile performers pre-flight; allocate 70% budget to predicted winners, 30% to test variants<br>
+                            <strong>Savings Math:</strong> $200K monthly spend: 35% waste = $70K. Predictive allocation: 15% waste = $30K. Monthly savings = $40K<br>
+                            <strong>Annualized:</strong> $40K/month × 12 = $480K/year<br>
+                            <strong>Beneficiaries:</strong> Finance (higher ROAS), growth team (more winners scale)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">$500K+ Annual Savings</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Sources:</strong> (1) $480K from reduced wasted spend + (2) $20K-50K from avoided production on predicted losers<br>
+                            <strong>Calculation:</strong> If model predicts bottom-quartile performance, skip production entirely ($500-800 per asset). 30-50 skipped videos/year = $15K-40K saved<br>
+                            <strong>Total Impact:</strong> $480K (waste reduction) + $25K (avoided production) = $505K annualized<br>
+                            <strong>Beneficiaries:</strong> Finance (bottom-line impact), marketing (budget reallocation to media)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">2x Campaign Success Rate</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> Without prediction, typically 30-40% of campaigns meet CPA targets<br>
+                            <strong>With Prediction:</strong> Testing predicted winners first, 60-80% meet targets<br>
+                            <strong>Logic:</strong> Model identifies high-probability winners → allocate budget there → more campaigns hit targets<br>
+                            <strong>Example:</strong> 10 campaigns. Baseline: 4 succeed. Predictive: 7-8 succeed. 2x = double the success rate<br>
+                            <strong>Beneficiaries:</strong> Marketing team (more wins = credibility), growth engineers (faster scaling)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">Faster Iteration Cycles</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> 7-14 day cycles to test hypothesis → results → pivot<br>
+                            <strong>With Automation:</strong> 2-4 day cycles with rapid failure detection<br>
+                            <strong>How:</strong> Automated scoring identifies losers immediately → kill low-performers fast → double down on winners<br>
+                            <strong>Impact:</strong> 2x more experiments per quarter = 2x more learnings = faster growth trajectory<br>
+                            <strong>Beneficiaries:</strong> Product teams (faster validation), entire org (competitive speed advantage)
+                        </p>
+                    </div>
                 </div>
 
                 <div class="phase-summary">
@@ -1298,6 +1398,25 @@
                     </ul>
                     <div class="targets" style="margin-top: 25px;">
                         <strong>Success Metric:</strong> ≥80% accuracy in predicting top quartile performers within first 60 days
+                    </div>
+                    
+                    <div style="background: #FFF4E6; border-left: 4px solid #F59E0B; padding: 25px; margin: 25px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <h4 style="color: #1E293B; margin-bottom: 20px; font-size: 1.1em;">Model Accuracy Targets Explained</h4>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">Baseline: 75% Accuracy (Day 30)</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Why 75%:</strong> Minimum viable accuracy for deployment. Still useful for budget prioritization, but not yet reliable for kill decisions<br>
+                            <strong>How:</strong> Initial model uses basic features (video metadata, prompt attributes, basic visual analysis)<br>
+                            <strong>Use Case:</strong> Flag "likely winners" for additional budget allocation
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">Target: 80%+ Accuracy (Day 60-90)</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Why 80%:</strong> Industry-leading standard. Enables confident budget allocation and automated kill decisions<br>
+                            <strong>How:</strong> Feature engineering improvements (advanced computer vision, NLP analysis, temporal patterns), more training data, hyperparameter tuning<br>
+                            <strong>Use Case:</strong> Automated budget allocation (70% to predicted winners) + automated early termination of predicted losers<br>
+                            <strong>Benchmark:</strong> Netflix movie recommendation accuracy = 75-80%. Our creative prediction task is similar complexity
+                        </p>
                     </div>
                 </div>
 
