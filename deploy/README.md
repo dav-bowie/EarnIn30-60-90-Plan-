@@ -1,56 +1,80 @@
-# EarnIn AI Marketing Portfolio
+# EarnIn 30-60-90 Plan Portfolio
 
-A professional portfolio showcasing AI-generated marketing content with a Netlify-style interface and structured JSON prompt methodology.
+A comprehensive portfolio showcasing David Bui's 30-60-90 strategic plan for EarnIn AI Content Operations, including an interactive timeline, AI-generated video gallery, and automated scoring system integration.
 
 ## 🎯 Features
 
-- **Netlify-Style Gallery**: Clean, professional video gallery layout
-- **JSON Prompt Methodology**: Structured approach to AI content creation
-- **Multiple AI Tools**: Support for Sora, Veo3, ChatGPT, Gemini, Other
-- **Performance Analytics**: Built-in video analysis and scoring
-- **Responsive Design**: Works on desktop, tablet, and mobile
-- **Local Storage**: Videos persist in browser session
-- **Export Functionality**: Download portfolio data
+### **30-60-90 Strategic Plan**
+- Interactive timeline with List and Gantt chart views
+- Phase-by-phase breakdown with detailed task breakdowns
+- Critical success factors and dependencies
+- Predictive Performance Intelligence System proposal
+
+### **AI Marketing Video Portfolio**
+- Clean, professional Netlify-style gallery layout
+- Support for multiple AI tools (Sora, Veo3, ChatGPT, Gemini, Other)
+- Built-in performance analytics and scoring
+- Local Storage persistence
+- Upload, analyze, and download functionality
+
+### **Accessibility & HCI Excellence**
+- **WCAG 2.1 compliant** design
+- Full keyboard navigation support
+- Screen reader optimized (ARIA labels throughout)
+- Focus management and modal accessibility
+- Respects `prefers-reduced-motion` for motion sensitivity
+
+### **Responsive Design**
+- Mobile-first approach
+- Optimized for all screen sizes (480px, 768px, desktop)
+- Touch-friendly interactions
+- Smooth animations and transitions
 
 ## 📁 Project Structure
 
 ```
 EarnIn/
-├── netlify-portfolio.html    # Main portfolio page
+├── index.html                          # 30-60-90 Plan homepage
+├── netlify-portfolio.html              # AI video portfolio
+├── viewer-portfolio.html               # Gallery viewer
 ├── css/
-│   └── netlify-style.css     # Netlify-style CSS
+│   └── netlify-style.css              # Complete styling system
 ├── js/
-│   └── netlify-portfolio.js  # Portfolio functionality
-├── videos/                   # Video files (for local development)
-├── thumbnails/              # Video thumbnails
-├── assets/                  # Additional assets
-└── README.md               # This file
+│   ├── netlify-portfolio.js           # Portfolio functionality
+│   └── viewer-portfolio.js            # Gallery viewer
+├── videos/                             # AI-generated videos
+├── thumbnails/                         # Video thumbnails
+├── assets/                             # Additional assets
+├── deploy/                             # Deployment package
+├── DEPLOYMENT_GUIDE.md                 # Deployment instructions
+├── VIDEO_UPLOAD_GUIDE.md              # Video upload guide
+├── PRE_DEPLOYMENT_CHECKLIST.md        # Pre-deployment checklist
+├── QUICK_START.md                      # Quick start guide
+├── N8N_WORKFLOW_INTEGRATION_PROMPT.md # n8n integration docs
+├── N8N_PROMPT_SHORT.md                # Short n8n prompt
+├── N8N_INTEGRATION_VISUAL.md          # Visual workflow diagram
+└── README.md                           # This file
 ```
 
 ## 🚀 Quick Start
 
 ### Local Development
-1. Open `netlify-portfolio.html` in your browser
-2. Click "Upload Videos" to add your AI-generated content
-3. Videos will be displayed in a Netlify-style gallery
+1. Open `index.html` in your browser for the 30-60-90 plan
+2. Open `netlify-portfolio.html` for the AI video gallery
+3. Upload videos using the "Upload Videos" button
+4. Toggle between List and Gantt chart views in the timeline
 
 ### Netlify Deployment
 
 #### Option 1: Drag & Drop (Easiest)
-1. Zip the entire `EarnIn` folder
+1. Run `deploy-to-netlify.bat` to create deployment package
 2. Go to [Netlify](https://netlify.com)
-3. Drag and drop the zip file to deploy
+3. Drag and drop `earnin-portfolio-deploy.zip`
 
 #### Option 2: Git Integration
-1. Push your code to GitHub
-2. Connect your GitHub repo to Netlify
-3. Netlify will auto-deploy on every push
-
-#### Option 3: Netlify CLI
-```bash
-npm install -g netlify-cli
-netlify deploy --prod --dir .
-```
+1. This repository is already connected to GitHub
+2. Push changes: `git push origin main`
+3. Connect GitHub repo to Netlify for auto-deployment
 
 ## 🎬 Video Upload Instructions
 
@@ -59,9 +83,9 @@ netlify deploy --prod --dir .
 3. **Aspect Ratio**: 9:16 (vertical) for mobile-first content
 4. **Duration**: 5-15 seconds for marketing content
 
-## 📊 JSON Prompt Methodology
+## 🧠 AI Content Creation Methodology
 
-Based on the structured approach documented in the [Google Sheet](https://docs.google.com/spreadsheets/d/1VThE5mDLFk_kAwmz9OirAHjWTs5fRxTaNzQUWHF36s8/edit?usp=sharing):
+Based on structured JSON prompt approach:
 
 ### 1. Metadata & Variables
 - `AD_ID`: Unique tracking identifier
@@ -89,38 +113,31 @@ Based on the structured approach documented in the [Google Sheet](https://docs.g
 - `SFX`: App tap sounds, cash register chime
 - `FINAL_CTA`: Download EarnIn call-to-action
 
-## 🛠️ Customization
+## 🔗 n8n Workflow Integration
 
-### Adding New AI Tools
-Edit `detectAITool()` function in `js/netlify-portfolio.js`:
+The portfolio includes comprehensive documentation for integrating an automated scoring engine with Alex's n8n AI video generation workflow:
 
-```javascript
-function detectAITool(filename) {
-    const name = filename.toLowerCase();
-    if (name.includes('your-new-tool')) return 'Your New Tool';
-    // ... existing code
-}
-```
+- **N8N_WORKFLOW_INTEGRATION_PROMPT.md**: Detailed step-by-step guide
+- **N8N_PROMPT_SHORT.md**: Quick implementation prompt
+- **N8N_INTEGRATION_VISUAL.md**: Visual workflow diagram
 
-### Modifying Styling
-Edit `css/netlify-style.css` to customize:
-- Colors (CSS variables in `:root`)
-- Layout (grid system)
-- Typography (Inter font family)
-- Animations and transitions
+**Key Integration Points:**
+1. Brief intake webhook
+2. 5 prompt variants generation
+3. Parallel video generation across agents
+4. Automated scoring engine integration
+5. Quality gate (7.5/10 threshold)
+6. Brand guardrails validation
+7. CMS publish workflow
+8. Analytics and ML feedback loop
 
-### Adding New Metrics
-Extend the video object structure in `js/netlify-portfolio.js`:
+## 🛠️ Technical Stack
 
-```javascript
-const video = {
-    // ... existing properties
-    customMetrics: {
-        creativity: 0,
-        innovation: 0
-    }
-};
-```
+- **Frontend**: HTML5, CSS3, Vanilla JavaScript
+- **Storage**: LocalStorage (client-side)
+- **Deployment**: Netlify
+- **Design**: Modern, accessible, mobile-first
+- **Framework**: No dependencies (vanilla JavaScript)
 
 ## 📱 Browser Compatibility
 
@@ -129,37 +146,71 @@ const video = {
 - Safari 13+
 - Edge 80+
 
-## 🔧 Troubleshooting
+## 🔧 Customization
 
-### Videos Not Playing
-- Ensure videos are in supported formats (MP4 recommended)
-- Check file size (under 50MB recommended)
-- Verify browser supports the video codec
+### Modifying Colors
+Edit CSS variables in `css/netlify-style.css`:
+```css
+:root {
+    --earnin-yellow: #FFC107;
+    --earnin-black: #000000;
+    --earnin-white: #FFFFFF;
+}
+```
 
-### Upload Issues
-- Check browser console for errors (F12)
-- Ensure sufficient disk space
-- Try refreshing the page
+### Adding New AI Tools
+Edit `detectAITool()` function in `js/netlify-portfolio.js`
 
-### Netlify Deployment Issues
-- Ensure all files are in the root directory
-- Check for any server-side dependencies
-- Verify file paths are relative
+### Adding New Metrics
+Extend the video object structure in JavaScript files
+
+## 📊 30-60-90 Plan Highlights
+
+### Phase 1: Days 0-30
+**Focus**: Learn & Ship Small
+- Onboard and KPI contract
+- Infrastructure and tools
+- AI video generation pipeline
+- Internal testing and feedback
+
+### Phase 2: Days 31-60
+**Focus**: Scale & Standardize
+- Production deployment
+- Automated scoring system
+- Brand guardrails implementation
+- Performance dashboard
+
+### Phase 3: Days 61-90
+**Focus**: Optimize & Expand
+- Model refinement and optimization
+- Auto-budget allocation
+- Advanced analytics and reporting
+- Full team integration
+
+## 🎯 Predictive Performance Intelligence System
+
+An additional value proposition featuring:
+- ML model training on historical campaign data
+- Real-time performance prediction
+- Budget optimization algorithms
+- Continuous learning loop
+
+**Projected ROI:**
+- 30-40% reduction in wasted ad spend
+- $500K+ annual savings
+- 2x campaign success rate
+- Faster iteration cycles
 
 ## 📈 Performance Tips
 
 1. **Optimize Videos**: Compress videos before upload
 2. **Use Thumbnails**: Generate video thumbnails for faster loading
-3. **Lazy Loading**: Implement lazy loading for large galleries
-4. **CDN**: Use a CDN for video hosting in production
+3. **Lazy Loading**: Implemented for large galleries
+4. **CDN**: Use CDN for video hosting in production
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+This is a portfolio project for EarnIn AI Content Operations position.
 
 ## 📄 License
 
@@ -168,11 +219,12 @@ This project is for portfolio demonstration purposes.
 ## 📞 Support
 
 For questions or issues:
-- Check the troubleshooting section
+- Check the troubleshooting section in guides
 - Review browser console for errors
 - Ensure all dependencies are properly loaded
 
 ---
 
 **Created by David Bui**  
-*AI Marketing Content Intern Candidate*
+*AI Marketing Content Intern Candidate*  
+[Portfolio Repository](https://github.com/dav-bowie/EarnIn30-60-90-Plan-)
