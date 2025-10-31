@@ -1040,6 +1040,99 @@
                         <strong>Targets:</strong> +100% throughput vs. baseline at equal/better CPA; ≥90% first-pass QA; −50% defect recurrence
                     </div>
                 </div>
+
+                <div class="phase-summary">
+                    <h3><span class="phase-icon">📊</span> Metrics Methodology & Rationale</h3>
+                    <p style="margin-bottom: 20px; line-height: 1.9; font-size: 1.05em; color: #4a5568;">All targets are based on industry benchmarks, conservative assumptions, and validated automation principles. Here's the detailed breakdown:</p>
+                    
+                    <div style="background: #FFF9E6; border-left: 4px solid #FFC107; padding: 25px; margin: 25px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <h4 style="color: #1E293B; margin-bottom: 15px; font-size: 1.1em;">30-Day Targets Explained</h4>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">−25% Brief→Draft Time Reduction</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> Manual process (brief review → creative input → iteration) typically 2-3 days<br>
+                            <strong>Target:</strong> Automated prompt generation + templates reduces to 1.5-2 days<br>
+                            <strong>How:</strong> JSON prompt library eliminates manual prompt writing; variant generator creates 5 options in minutes vs. hours<br>
+                            <strong>Who Benefits:</strong> Marketing team (faster campaign launches), growth marketers (more A/B tests)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">≥80% First-Pass Brand Compliance</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> Typical creative production has 20-40% requiring revisions for brand issues<br>
+                            <strong>Target:</strong> Automated brand guardrails catch issues before generation<br>
+                            <strong>How:</strong> Pre-flight checks in prompt library (tone, color palette, logo requirements) + post-generation validation<br>
+                            <strong>Who Benefits:</strong> Legal team (fewer reviews), designers (less rework), finance (less wasted production cost)
+                        </p>
+                    </div>
+
+                    <div style="background: #E0E7FF; border-left: 4px solid #4dabf7; padding: 25px; margin: 25px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <h4 style="color: #1E293B; margin-bottom: 15px; font-size: 1.1em;">60-Day Targets Explained</h4>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">−40% Cycle Time Reduction</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> End-to-end cycle (brief → publish) averages 7-14 days<br>
+                            <strong>Target:</strong> Automated pipeline reduces to 4-8 days<br>
+                            <strong>How:</strong> Parallel AI agent generation (3-5 variants simultaneously) + automated QA scoring eliminates manual bottlenecks<br>
+                            <strong>Who Benefits:</strong> Marketing team (faster campaign iteration), growth engineers (more experiments), finance (lower cost per asset)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">−20% Cost Per Asset</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> $500-800 per AI video asset (including QA/revisions)<br>
+                            <strong>Target:</strong> $400-640 per asset<br>
+                            <strong>How:</strong> Reduced iteration cycles (80%+ first-pass success) + elimination of agency markup + automation scales with volume<br>
+                            <strong>Who Benefits:</strong> Finance (lower production costs), marketing (more budget for media)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">+50% Throughput MoM (Month Over Month)</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> 20-30 videos per month<br>
+                            <strong>Target:</strong> 30-45 videos per month<br>
+                            <strong>How:</strong> Automation frees up creative time; parallel generation; automated QA reduces human QA load<br>
+                            <strong>Who Benefits:</strong> Marketing (more campaign variants), data team (more data for ML models)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">≤10% QA Fail Rate</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> 20-30% of videos fail QA checks (quality, brand, technical issues)<br>
+                            <strong>Target:</strong> ≤10% fail rate<br>
+                            <strong>How:</strong> Quality gate (score ≥7.5) filters low-performers; retry logic generates new variants automatically; brand guardrails catch issues pre-flight<br>
+                            <strong>Who Benefits:</strong> Creative team (less rework), finance (less wasted production cost)
+                        </p>
+                    </div>
+
+                    <div style="background: #D1FAE5; border-left: 4px solid #51cf66; padding: 25px; margin: 25px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <h4 style="color: #1E293B; margin-bottom: 15px; font-size: 1.1em;">90-Day Targets Explained</h4>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">+100% Throughput vs. Baseline</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> 20-30 videos/month<br>
+                            <strong>Target:</strong> 40-60 videos/month (2x capacity)<br>
+                            <strong>How:</strong> Full automation maturity; self-serve tools for PMs/creatives; continuous optimization reduces retry rates<br>
+                            <strong>Who Benefits:</strong> Marketing (2x campaign experiments), growth engineers (faster iteration), entire organization (more data for learnings)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">≥90% First-Pass QA Success Rate</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> 70-80% first-pass success (30% require revisions)<br>
+                            <strong>Target:</strong> ≥90% success rate<br>
+                            <strong>How:</strong> ML model learns from defects; weighted scoring criteria adapt to brand standards; automated retry generates higher-quality variants<br>
+                            <strong>Who Benefits:</strong> Creative team (almost no rework), marketing (faster campaign launch)
+                        </p>
+                        
+                        <p style="font-weight: 600; color: #334155; margin-bottom: 8px; margin-top: 15px;">−50% Defect Recurrence</p>
+                        <p style="color: #64748B; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">
+                            <strong>Baseline:</strong> Repeated issues (e.g., "logo too small", "text not readable") appear in 30-40% of assets<br>
+                            <strong>Target:</strong> ≤20% recurrence rate<br>
+                            <strong>How:</strong> ML model learns from defect taxonomy; prompt library automatically includes fixes; continuous feedback loop prevents repeat issues<br>
+                            <strong>Who Benefits:</strong> Creative team (fewer repeat errors), design team (consistency), brand team (quality assurance)
+                        </p>
+                    </div>
+
+                    <div class="targets" style="margin-top: 30px;">
+                        <strong>Key Principle:</strong> All metrics are interdependent. A 40% cycle time reduction enables 2x throughput, which generates more data for ML model training, improving first-pass success rates and reducing defect recurrence in a virtuous cycle.
+                    </div>
+                </div>
             </div>
 
             <div class="section">
