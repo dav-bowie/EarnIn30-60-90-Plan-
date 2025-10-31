@@ -6,7 +6,7 @@
     <meta name="description" content="David Bui's 30-60-90 plan for EarnIn AI Content Operations. Comprehensive roadmap for scaling AI-generated marketing content with automated scoring and workflow integration.">
     <meta name="keywords" content="EarnIn, AI content, video generation, marketing automation, 30-60-90 plan">
     <meta name="author" content="David Bui">
-    <title>David Bui - 30-60-90 Plan | EarnIn AI Content Operations</title>
+    <title>EarnIn AI Content Operations - 30-60-90 Strategic Plan | David Bui</title>
     <style>
         * {
             margin: 0;
@@ -54,9 +54,9 @@
         }
 
         header {
-            background: #FFC107;
+            background: linear-gradient(135deg, #FFC107 0%, #FFD740 100%);
             color: white;
-            padding: 80px 40px;
+            padding: 60px 40px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -69,9 +69,20 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
             opacity: 0.3;
             animation: gridMove 20s linear infinite;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent 0%, #000 20%, #000 80%, transparent 100%);
+            opacity: 0.1;
         }
 
         @keyframes gridMove {
@@ -80,14 +91,34 @@
         }
 
         header h1 {
-            font-size: 3em;
-            margin-bottom: 15px;
-            font-weight: 800;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
             color: #000;
             text-shadow: none;
             position: relative;
             z-index: 1;
             animation: slideInDown 0.8s ease;
+            letter-spacing: -0.02em;
+        }
+        
+        header .earnin-brand {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #000;
+            opacity: 0.95;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 30px;
+        }
+        
+        header .subtitle {
+            font-size: 1.5em;
+            font-weight: 500;
+            color: #000;
+            opacity: 0.85;
+            margin-top: 15px;
+            line-height: 1.5;
         }
 
         @keyframes slideInDown {
@@ -102,14 +133,17 @@
         }
 
         header p {
-            font-size: 1.3em;
+            font-size: 1.1em;
             color: #000;
-            opacity: 0.9;
+            opacity: 0.85;
             font-weight: 400;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             position: relative;
             z-index: 1;
             animation: slideInDown 1s ease;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
         .content {
@@ -148,18 +182,22 @@
         }
 
         .intro-letter {
-            background: #FFF8E1;
-            padding: 40px;
+            background: #FFFFFF;
+            padding: 45px;
             border-radius: 16px;
             border-left: 6px solid #FFC107;
             margin-bottom: 50px;
-            box-shadow: 0 4px 16px rgba(255, 193, 7, 0.15);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-right: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .intro-letter:hover {
-            transform: translateX(5px);
-            box-shadow: 0 12px 32px rgba(255, 193, 7, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border-left-width: 8px;
         }
 
         .intro-letter p {
@@ -932,8 +970,9 @@
 <body>
     <div class="container">
         <header>
-            <h1>🎯 30-60-90 Plan: AI Content Factory</h1>
-            <p>Standing up an AI content factory, tying JSON-prompted generation to analytics and brand guardrails</p>
+            <div class="earnin-brand">EarnIn</div>
+            <h1>AI Content Operations: 30-60-90 Strategic Plan</h1>
+            <p>Scaling AI-generated marketing content through automated workflows, intelligent scoring, and brand compliance</p>
         </header>
 
         <div class="content">
@@ -942,7 +981,7 @@
                     <p><strong>Dear EarnIn Team,</strong></p>
                     <p>Thank you all for taking the time to interview me. I really appreciate the efforts from Vanessa, Anna, DJ, and Alex. From each conversation I had with you all, so many ideas bounced in my head that I wanted to draft up and share.</p>
                     <p>If I were to join the team, I would come up with a roadmap timeline, similar to a Gantt chart. I have my proposed ideas on how I would immediately kickstart the job and focus on developing internal apps and implementing workflows to automate and score AI generated videos. After discussing with Alex, I realized how his workflow using n8n combined with my automated scoring engine for AI generated video accuracy would go hand in hand. My background in product design, videography, business, and engineering, specifically in computer science for software and human computer interaction, positions me well for this role.</p>
-                    <p>Attached is a one-page 30–60–90 showing how I'd stand up an AI content factory, tying JSON-prompted generation to analytics and brand guardrails so we can increase throughput while holding or improving CPA. I can start within 1–2 weeks and I'm flexible on title/scope.</p>
+                    <p>Attached is a one-page 30–60–90 showing how I'd scale AI content operations, tying JSON-prompted generation to analytics and brand guardrails so we can increase throughput while holding or improving CPA. I can start within 1–2 weeks and I'm flexible on title/scope.</p>
                     <p>Per your note, I've already been brushing up on n8n and have a working outline for an automated video pipeline (brief → prompt variants → generation → QA/defect scoring → publish) that I'm connecting to the internal app I built for asset analysis and scoring. Happy to walk through this pipeline in detail.</p>
                     <p>If there's anything helpful for approvals like work samples, a quick demo, or references, I can share it today.</p>
                     <p>I really appreciate you pushing this forward,</p>
