@@ -38,6 +38,16 @@
     Content-Type = "video/webm"
 
 [[redirects]]
-  from = "/*"
+  from = "/"
+  to = "/index.html"
+  status = 200
+  
+[[redirects]]
+  from = "/portfolio"
   to = "/netlify-portfolio.html"
+  status = 200
+  
+[[redirects]]
+  from = "/gallery"
+  to = "/viewer-portfolio.html"
   status = 200

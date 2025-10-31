@@ -39,49 +39,51 @@ function uploadVideos() {
     document.getElementById('file-input').click();
 }
 
-// Handle file upload
+// Handle file upload with base64 conversion for persistence
 function handleFileUpload(event) {
     const files = event.target.files;
     if (files.length === 0) return;
     
     Array.from(files).forEach(file => {
         if (file.type.startsWith('video/')) {
-            const videoUrl = URL.createObjectURL(file);
-            console.log('Created video URL:', videoUrl);
-            
-            const video = {
-                id: Date.now() + Math.random(),
-                name: file.name,
-                url: videoUrl,
-                size: file.size,
-                uploadDate: new Date().toISOString(),
-                file: file,
+            // Convert file to base64 for persistent storage
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const videoData = {
+                    id: Date.now() + Math.random(),
+                    name: file.name,
+                    data: e.target.result, // Base64 data
+                    size: file.size,
+                    uploadDate: new Date().toISOString(),
+                    type: file.type,
+                    
+                    // AI Tool detection based on filename
+                    aiTool: detectAITool(file.name),
+                    
+                    // Performance metrics
+                    status: 'success',
+                    metrics: {
+                        quality: Math.floor(Math.random() * 3) + 7, // 7-10
+                        engagement: Math.floor(Math.random() * 3) + 7,
+                        clarity: Math.floor(Math.random() * 3) + 7,
+                        brandAlignment: Math.floor(Math.random() * 3) + 7,
+                        technicalExecution: Math.floor(Math.random() * 3) + 7
+                    },
+                    performance: {
+                        generationTime: Math.floor(Math.random() * 300) + 30,
+                        iterations: Math.floor(Math.random() * 3) + 1,
+                        successRate: 85 + Math.floor(Math.random() * 15)
+                    }
+                };
                 
-                // AI Tool detection based on filename or random assignment
-                aiTool: detectAITool(file.name),
+                videos.push(videoData);
+                saveVideos();
+                renderVideos();
+                updateStats();
                 
-                // Performance metrics
-                status: 'success',
-                metrics: {
-                    quality: Math.floor(Math.random() * 3) + 7, // 7-10
-                    engagement: Math.floor(Math.random() * 3) + 7,
-                    clarity: Math.floor(Math.random() * 3) + 7,
-                    brandAlignment: Math.floor(Math.random() * 3) + 7,
-                    technicalExecution: Math.floor(Math.random() * 3) + 7
-                },
-                performance: {
-                    generationTime: Math.floor(Math.random() * 300) + 30,
-                    iterations: Math.floor(Math.random() * 3) + 1,
-                    successRate: 85 + Math.floor(Math.random() * 15)
-                }
+                showNotification(`Video "${file.name}" uploaded successfully!`, 'success');
             };
-            
-            videos.push(video);
-            saveVideos();
-            renderVideos();
-            updateStats();
-            
-            showNotification(`Video "${file.name}" uploaded successfully!`, 'success');
+            reader.readAsDataURL(file);
         } else {
             showNotification('Please select a video file', 'error');
         }
@@ -134,12 +136,12 @@ function renderVideos() {
         const scoreClass = getScoreClass(avgScore);
         
         return `
-            <div class="video-card" data-id="${video.id}" onclick="openVideoModal('${video.id}')">
+            <div class="video-card" data-id="${video.id}" onclick="openVideoModal('${video.id}')" role="button" tabindex="0" aria-label="View video ${video.name}" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openVideoModal('${video.id}');}">
                 <div class="video-thumbnail">
-                    <video preload="metadata" muted>
-                        <source src="${video.url}" type="${video.file ? video.file.type : 'video/mp4'}">
+                    <video preload="metadata" muted aria-label="Thumbnail for ${video.name}">
+                        <source src="${video.data || video.url}" type="${video.type || 'video/mp4'}">
                     </video>
-                    <div class="play-overlay">
+                    <div class="play-overlay" aria-hidden="true">
                         <i class="fas fa-play"></i>
                     </div>
                 </div>
@@ -147,20 +149,20 @@ function renderVideos() {
                     <div class="video-title">${video.name}</div>
                     <div class="video-meta">
                         <span>${(video.size / (1024 * 1024)).toFixed(1)} MB</span>
-                        <span>•</span>
+                        <span aria-hidden="true">•</span>
                         <span>${new Date(video.uploadDate).toLocaleDateString()}</span>
-                        <span>•</span>
+                        <span aria-hidden="true">•</span>
                         <span class="ai-tool-badge">${video.aiTool}</span>
                     </div>
                     <div class="video-actions">
-                        <button class="btn-small" onclick="event.stopPropagation(); analyzeVideo('${video.id}')">
-                            <i class="fas fa-chart-line"></i> Analyze
+                        <button class="btn-small" onclick="event.stopPropagation(); analyzeVideo('${video.id}')" aria-label="Analyze video ${video.name}">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i> Analyze
                         </button>
-                        <button class="btn-small" onclick="event.stopPropagation(); downloadVideo('${video.id}')">
-                            <i class="fas fa-download"></i> Download
+                        <button class="btn-small" onclick="event.stopPropagation(); downloadVideo('${video.id}')" aria-label="Download video ${video.name}">
+                            <i class="fas fa-download" aria-hidden="true"></i> Download
                         </button>
-                        <button class="btn-small btn-delete" onclick="event.stopPropagation(); deleteVideo('${video.id}')">
-                            <i class="fas fa-trash"></i> Delete
+                        <button class="btn-small btn-delete" onclick="event.stopPropagation(); deleteVideo('${video.id}')" aria-label="Delete video ${video.name}">
+                            <i class="fas fa-trash" aria-hidden="true"></i> Delete
                         </button>
                     </div>
                 </div>
@@ -211,7 +213,7 @@ function openVideoModal(videoId) {
     const modalTitle = document.getElementById('modal-title');
     const modalDescription = document.getElementById('modal-description');
     
-    modalVideo.src = video.url;
+    modalVideo.src = video.data || video.url;
     modalTitle.textContent = video.name;
     modalDescription.innerHTML = `
         <strong>AI Tool:</strong> ${video.aiTool}<br>
@@ -221,7 +223,42 @@ function openVideoModal(videoId) {
     `;
     
     modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    
+    // Focus management for accessibility
+    const closeBtn = modal.querySelector('.close');
+    if (closeBtn) {
+        setTimeout(() => {
+            closeBtn.focus();
+        }, 100);
+    }
+    
+    // Trap focus within modal
+    const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    // Handle tab key trapping
+    const handleTabKey = (e) => {
+        if (e.key !== 'Tab') return;
+        
+        if (e.shiftKey) {
+            if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            }
+        } else {
+            if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
+    };
+    
+    // Store handler for cleanup
+    modal._tabKeyHandler = handleTabKey;
+    modal.addEventListener('keydown', handleTabKey);
 }
 
 // Close modal
@@ -229,10 +266,23 @@ function closeModal() {
     const modal = document.getElementById('video-modal');
     const modalVideo = document.getElementById('modal-video');
     
+    // Remove tab key handler if it exists
+    if (modal._tabKeyHandler) {
+        modal.removeEventListener('keydown', modal._tabKeyHandler);
+        delete modal._tabKeyHandler;
+    }
+    
     modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
     modalVideo.pause();
     modalVideo.src = '';
     document.body.style.overflow = 'auto';
+    
+    // Return focus to trigger element (video card)
+    const trigger = document.querySelector('.video-card[data-id]');
+    if (trigger) {
+        setTimeout(() => trigger.focus(), 100);
+    }
 }
 
 // Close modal when clicking outside
@@ -464,37 +514,56 @@ function compareWithOthers(videoId) {
 // Download video
 function downloadVideo(videoId) {
     const video = videos.find(v => v.id == videoId);
-    if (!video) return;
+    if (!video) {
+        showNotification('Video not found', 'error');
+        return;
+    }
+    
+    // Use data URL if available, otherwise use URL
+    const videoUrl = video.data || video.url;
+    if (!videoUrl) {
+        showNotification('Video source not available', 'error');
+        return;
+    }
     
     const link = document.createElement('a');
-    link.href = video.url;
+    link.href = videoUrl;
     link.download = video.name;
+    link.setAttribute('aria-label', `Download ${video.name}`);
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
+    
+    showNotification(`Downloading ${video.name}...`, 'success');
 }
 
 // Delete individual video
 function deleteVideo(videoId) {
     const video = videos.find(v => v.id == videoId);
-    if (!video) return;
+    if (!video) {
+        showNotification('Video not found', 'error');
+        return;
+    }
     
     if (confirm(`Are you sure you want to delete "${video.name}"?\n\nThis action cannot be undone.`)) {
-        // Revoke object URL to free memory
+        // Revoke object URL to free memory if it exists
         if (video.url && video.url.startsWith('blob:')) {
             URL.revokeObjectURL(video.url);
         }
         
-        // Remove from arrays
+        // Remove from main videos array
         const videoIndex = videos.findIndex(v => v.id == videoId);
         if (videoIndex !== -1) {
             videos.splice(videoIndex, 1);
         }
         
+        // Remove from filtered videos array
         const filteredIndex = filteredVideos.findIndex(v => v.id == videoId);
         if (filteredIndex !== -1) {
             filteredVideos.splice(filteredIndex, 1);
         }
         
-        // Save and re-render
+        // Save to localStorage and re-render
         saveVideos();
         renderVideos();
         updateStats();
@@ -566,12 +635,19 @@ function loadVideos() {
         try {
             const parsedVideos = JSON.parse(savedVideos);
             videos = parsedVideos.map(video => {
-                // Recreate object URL if needed
-                if (video.url && video.url.startsWith('blob:')) {
-                    // Object URL might be expired, we'll need to handle this
+                // Handle both old blob URLs and new base64 data
+                if (video.data) {
+                    // New format with base64 data - this persists
+                    return video;
+                } else if (video.url && video.url.startsWith('blob:')) {
+                    // Old format with blob URL - mark as needing re-upload
+                    video.needsReupload = true;
+                    video.url = null;
+                    return video;
+                } else {
+                    // Legacy format
                     return video;
                 }
-                return video;
             });
         } catch (error) {
             console.error('Error loading videos:', error);
@@ -649,7 +725,8 @@ function clearAllVideos() {
         return;
     }
     
-    const confirmMessage = `Are you sure you want to clear all ${videos.length} video${videos.length > 1 ? 's' : ''}?\n\nThis action cannot be undone and will remove:\n• All uploaded videos\n• All analysis data\n• All performance metrics`;
+    const videoCount = videos.length;
+    const confirmMessage = `Are you sure you want to clear all ${videoCount} video${videoCount > 1 ? 's' : ''}?\n\nThis action cannot be undone and will remove:\n• All uploaded videos\n• All analysis data\n• All performance metrics`;
     
     if (confirm(confirmMessage)) {
         // Revoke all object URLs to free memory
@@ -671,7 +748,7 @@ function clearAllVideos() {
         updateStats();
         
         // Show success message
-        showNotification(`Successfully cleared all ${videos.length} video${videos.length > 1 ? 's' : ''}`, 'success');
+        showNotification(`Successfully cleared all ${videoCount} video${videoCount > 1 ? 's' : ''}`, 'success');
         
         // Close any open modals
         closeModal();

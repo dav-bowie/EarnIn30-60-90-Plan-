@@ -3,274 +3,1549 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EarnIn AI Marketing Portfolio - David Bui</title>
-    <link rel="stylesheet" href="css/netlify-style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="David Bui's 30-60-90 plan for EarnIn AI Content Operations. Comprehensive roadmap for scaling AI-generated marketing content with automated scoring and workflow integration.">
+    <meta name="keywords" content="EarnIn, AI content, video generation, marketing automation, 30-60-90 plan">
+    <meta name="author" content="David Bui">
+    <title>David Bui - 30-60-90 Plan | EarnIn AI Content Operations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #000;
+            background: #FFF8E1;
+            padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header {
+            background: #FFC107;
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: #000;
+            text-shadow: none;
+            position: relative;
+            z-index: 1;
+            animation: slideInDown 0.8s ease;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header p {
+            font-size: 1.3em;
+            color: #000;
+            opacity: 0.9;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+            animation: slideInDown 1s ease;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .section {
+            margin-bottom: 70px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            color: #FFC107;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #FFC107;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: #FFD740;
+            border-radius: 2px;
+        }
+
+        .intro-letter {
+            background: #FFF8E1;
+            padding: 40px;
+            border-radius: 16px;
+            border-left: 6px solid #FFC107;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 16px rgba(255, 193, 7, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .intro-letter:hover {
+            transform: translateX(5px);
+            box-shadow: 0 12px 32px rgba(255, 193, 7, 0.2);
+        }
+
+        .intro-letter p {
+            margin-bottom: 20px;
+            line-height: 1.9;
+            font-size: 1.05em;
+            color: #212121;
+        }
+        
+        .intro-letter p:last-child {
+            margin-bottom: 0;
+        }
+
+        .gantt-container {
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .timeline-overview {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .phase-block {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .phase-block:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: rgba(255, 193, 7, 0.3);
+        }
+        
+        .phase-block:focus-within {
+            outline: 3px solid #FFC107;
+            outline-offset: 2px;
+        }
+        
+        .phase-block:active {
+            transform: translateY(-4px) scale(1.01);
+        }
+
+        .phase-header {
+            padding: 25px 30px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transition: all 0.5s;
+        }
+
+        .phase-header:hover::before {
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .phase-header span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .phase-header.phase-30 { 
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+        .phase-header.phase-60 { 
+            background: linear-gradient(135deg, #4dabf7 0%, #339af0 100%);
+            box-shadow: 0 4px 15px rgba(77, 171, 247, 0.3);
+        }
+        .phase-header.phase-90 { 
+            background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+            box-shadow: 0 4px 15px rgba(81, 207, 102, 0.3);
+        }
+
+        .tasks-grid {
+            padding: 20px;
+        }
+
+        .task-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-left: 5px solid;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+        
+        .task-item:focus {
+            outline: 3px solid #FFC107;
+            outline-offset: 2px;
+        }
+        
+        .task-item:active {
+            transform: translateX(4px) scale(1.005);
+        }
+
+        .task-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: width 0.5s;
+        }
+
+        .task-item:hover::before {
+            width: 100%;
+        }
+
+        .task-item.phase-30 { border-left-color: #ff6b35; }
+        .task-item.phase-60 { border-left-color: #4dabf7; }
+        .task-item.phase-90 { border-left-color: #51cf66; }
+
+        .task-item:hover {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f3f5 100%);
+            transform: translateX(8px) scale(1.01);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .task-item-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .task-item-title {
+            font-weight: 600;
+            font-size: 1.1em;
+            color: #2d3748;
+            transition: color 0.3s;
+        }
+
+        .task-item:hover .task-item-title {
+            color: #FFC107;
+        }
+
+        .task-item-date {
+            font-size: 0.85em;
+            color: white;
+            background: #000;
+            padding: 6px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            font-weight: 500;
+        }
+
+        .task-item-owners {
+            font-size: 0.95em;
+            color: #424242;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .task-item-owners::before {
+            content: '👥';
+            font-size: 1.1em;
+        }
+
+        .task-item-deps {
+            font-size: 0.85em;
+            color: #718096;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px dashed #e2e8f0;
+        }
+
+        .task-item-deps strong {
+            color: #FFC107;
+            font-weight: 600;
+        }
+
+        .gantt-chart {
+            margin-top: 40px;
+            overflow-x: auto;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .chart-container {
+            position: relative;
+        }
+
+        .gantt-header {
+            display: flex;
+            height: 60px;
+            background: #FFC107;
+            color: #000;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 10px;
+        }
+
+        .gantt-week-markers {
+            display: flex;
+            min-width: 1500px;
+        }
+
+        .week-marker {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .review-marker {
+            position: absolute;
+            top: -30px;
+            height: calc(100% + 30px);
+            width: 3px;
+            background: #ffd700;
+            box-shadow: 0 0 10px rgba(255,215,0,0.5);
+            z-index: 10;
+        }
+
+        .review-marker-label {
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffd700;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .gantt-tasks {
+            min-width: 1500px;
+        }
+
+        .gantt-task-row {
+            display: flex;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: 50px;
+        }
+
+        .gantt-task-row:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .gantt-task-label {
+            min-width: 280px;
+            max-width: 280px;
+            padding: 8px 12px;
+            background: #FFC107;
+            color: #000;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            font-size: 0.9em;
+        }
+
+        .gantt-task-bar-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+        }
+
+        .month-cell {
+            flex: 1;
+            border-right: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .gantt-task-bar {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 35px;
+            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            font-size: 0.85em;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .gantt-task-bar:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .gantt-task-bar:focus {
+            outline: 3px solid #FFC107;
+            outline-offset: 2px;
+            z-index: 5;
+        }
+
+        .gantt-task-bar.phase-30 { background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); }
+        .gantt-task-bar.phase-60 { background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); }
+        .gantt-task-bar.phase-90 { background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%); }
+
+        .chart-toggle {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .chart-toggle button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-toggle button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .chart-toggle button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .chart-toggle button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .chart-toggle button:focus {
+            outline: 3px solid #FFC107;
+            outline-offset: 3px;
+        }
+
+        .chart-toggle button:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+        
+        .chart-toggle button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .phase-summary {
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%);
+            padding: 35px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .phase-summary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+            border-color: rgba(255, 193, 7, 0.3);
+        }
+        
+        .phase-summary:focus-within {
+            outline: 2px solid #FFC107;
+            outline-offset: 2px;
+        }
+
+        .phase-summary h3 {
+            color: #000;
+            font-size: 2em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .phase-icon {
+            font-size: 1.8em;
+            margin-right: 15px;
+            animation: bounceIn 1s ease;
+        }
+
+        @keyframes bounceIn {
+            0%, 20%, 40%, 60%, 80%, 100% {
+                transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+            0% {
+                opacity: 0;
+                transform: scale3d(.3, .3, .3);
+            }
+            20% {
+                transform: scale3d(1.1, 1.1, 1.1);
+            }
+            40% {
+                transform: scale3d(.9, .9, .9);
+            }
+            60% {
+                opacity: 1;
+                transform: scale3d(1.03, 1.03, 1.03);
+            }
+            80% {
+                transform: scale3d(.97, .97, .97);
+            }
+            100% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        .phase-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .phase-summary li {
+            padding: 12px 0;
+            padding-left: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+            color: #4a5568;
+            font-size: 1.05em;
+        }
+
+        .phase-summary li:hover {
+            padding-left: 50px;
+            color: #FFC107;
+        }
+
+        .phase-summary li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #FFC107;
+            font-weight: bold;
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .phase-summary li:hover:before {
+            transform: scale(1.3) rotate(360deg);
+        }
+
+        .targets {
+            background: #FFC107;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 6px solid #FFD740;
+            margin-top: 25px;
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+            color: #000;
+        }
+        
+        .targets strong {
+            color: #000;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        
+        .targets ul {
+            margin-top: 10px;
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .targets li {
+            color: #212121;
+            padding: 8px 0;
+        }
+        
+        .targets p {
+            margin: 0;
+            color: #000;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 50px auto;
+            padding: 50px;
+            border-radius: 24px;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+            animation: slideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+        }
+
+        @keyframes slideIn {
+            from { 
+                transform: translateY(-100px) scale(0.8); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateY(0) scale(1); 
+                opacity: 1; 
+            }
+        }
+
+        .close {
+            float: right;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #000;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close:hover {
+            color: #FFC107;
+            background: #f8f9fa;
+            transform: rotate(90deg);
+        }
+
+        .task-detail {
+            margin-top: 20px;
+        }
+
+        .task-detail h4 {
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .task-detail p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            background: #FFC107;
+            color: #000;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .contact-info h2 {
+            margin-bottom: 25px;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info p {
+            font-size: 1.15em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            opacity: 0.95;
+        }
+
+        .nav-link {
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 12px 24px;
+            background: #000;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4);
+            background: #424242;
+        }
+        
+        .nav-link:focus {
+            outline: 3px solid #FFC107;
+            outline-offset: 3px;
+        }
+        
+        .nav-link:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .navigation {
+            text-align: center;
+            padding: 40px 20px;
+            background: #FFF8E1;
+            border-top: 3px solid #FFC107;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 50px 20px;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            header p {
+                font-size: 1.1em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .task-item-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .phase-header {
+                font-size: 1em;
+                padding: 15px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.6em;
+            }
+            
+            .gantt-chart {
+                overflow-x: scroll;
+            }
+            
+            .chart-toggle button {
+                padding: 12px 24px;
+                font-size: 0.95em;
+            }
+            
+            .nav-link {
+                margin: 5px 10px;
+                padding: 10px 18px;
+                font-size: 0.9em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .phase-summary {
+                padding: 20px;
+            }
+            
+            .intro-letter {
+                padding: 25px;
+            }
+            
+            .contact-info {
+                padding: 40px 20px;
+            }
+            
+            .contact-info h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <i class="fas fa-video"></i>
-                <span>EarnIn AI Portfolio</span>
-            </div>
-            <nav class="nav">
-                <a href="#process" class="nav-link">Process</a>
-                <a href="#gallery" class="nav-link">Gallery</a>
-                <a href="#methodology" class="nav-link">Methodology</a>
-                <a href="#about" class="nav-link">About</a>
-            </nav>
-            <div class="header-actions">
-                <button class="btn-primary" onclick="showAdminLogin()" id="admin-btn">
-                    <i class="fas fa-cog"></i>
-                    Admin
-                </button>
-            </div>
-        </div>
-    </header>
+    <div class="container">
+        <header>
+            <h1>🎯 30-60-90 Plan: AI Content Factory</h1>
+            <p>Standing up an AI content factory, tying JSON-prompted generation to analytics and brand guardrails</p>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>AI-Generated Marketing Content Portfolio</h1>
-            <p>Showcasing the evolution of AI content creation through structured JSON prompts and director-level thinking</p>
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-number" id="total-videos">0</span>
-                    <span class="stat-label">Videos Created</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number" id="ai-tools">5</span>
-                    <span class="stat-label">AI Tools Used</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number" id="success-rate">85%</span>
-                    <span class="stat-label">Success Rate</span>
+        <div class="content">
+            <div class="section">
+                <div class="intro-letter">
+                    <p><strong>Dear EarnIn Team,</strong></p>
+                    <p>Thank you all for taking the time to interview me. I really appreciate the efforts from Vanessa, Anna, DJ, and Alex. From each conversation I had with you all, so many ideas bounced in my head that I wanted to draft up and share.</p>
+                    <p>If I were to join the team, I would come up with a roadmap timeline, similar to a Gantt chart. I have my proposed ideas on how I would immediately kickstart the job and focus on developing internal apps and implementing workflows to automate and score AI generated videos. After discussing with Alex, I realized how his workflow using n8n combined with my automated scoring engine for AI generated video accuracy would go hand in hand. With that being said, my background in product design, videography, business, and engineering, specifically in computer science for software and human computer interaction, I believe I would make a great fit to the team.</p>
+                    <p>Attached is a one-page 30–60–90 showing how I'd stand up an AI content factory, tying JSON-prompted generation to analytics and brand guardrails—so we can increase throughput while holding or improving CPA. I can start within 1–2 weeks and I'm flexible on title/scope.</p>
+                    <p>Per your note, I've already been brushing up on n8n and have a working outline for an automated video pipeline (brief → prompt variants → generation → QA/defect scoring → publish) that I'm connecting to the internal app I built for asset analysis and scoring. Happy to walk through this life.</p>
+                    <p>I'm currently working against a Wednesday, Nov 5 response deadline for another offer, and I've requested a short extension. If there's anything helpful for approvals—work samples, a quick demo, or references—I can share it today.</p>
+                    <p>I really appreciate you pushing this forward,</p>
+                    <p><strong>David Bui</strong></p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Process Section -->
-    <section id="process" class="process-section">
-        <div class="container">
-            <h2>My AI Content Creation Process</h2>
-            <div class="process-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>1. Requirements & Structure</h3>
-                        <p>Writing clear requirements, shots, and constraints. Turning each sentence into measurable fields (duration, framing, objects, actions).</p>
-                    </div>
+            <div class="section">
+                <h2 class="section-title">Strategic Timeline</h2>
+                <div class="chart-toggle">
+                    <button onclick="toggleChart()" aria-label="Toggle between list and Gantt chart view" id="toggle-chart-btn"><span>📊 Switch to Gantt Chart View</span></button>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>2. JSON Template Development</h3>
-                        <p>Creating structured JSON prompts with deterministic levers (seed, style library, brand colors, negative prompts) in one place.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>3. Director's Vision</h3>
-                        <p>Thinking like a director and videographer, keeping narrative in scenes and precision in shots.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>4. AI Generation & Iteration</h3>
-                        <p>Using multiple AI tools (Sora, Veo3, ChatGPT, Gemini) with structured prompts for consistent, high-quality output.</p>
+                <div class="gantt-container">
+                    <div class="timeline-overview" id="timelineOverview"></div>
+                    <div class="gantt-chart hidden" id="ganttChartView">
+                        <div class="chart-container" id="chartContainer"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery-section">
-        <div class="container">
-            <div class="gallery-header">
-                <h2>Video Gallery</h2>
-                <div class="gallery-controls">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="search-input" placeholder="Search videos...">
-                    </div>
-                    <div class="filter-dropdown">
-                        <select id="filter-ai-tool">
-                            <option value="">All AI Tools</option>
-                            <option value="Sora">Sora</option>
-                            <option value="Veo3">Veo3</option>
-                            <option value="ChatGPT">ChatGPT</option>
-                            <option value="Gemini">Gemini</option>
-                            <option value="Other">Other</option>
-                        </select>
+            <div class="section">
+                <h2 class="section-title">Phase Summaries</h2>
+                
+                <div class="phase-summary">
+                    <h3><span class="phase-icon">📚</span> 30 Days – Learn & Ship Small</h3>
+                    <ul>
+                        <li>KPI contract (throughput, cycle time, CTR/CVR/CPA)</li>
+                        <li>Golden dataset with labeled defects</li>
+                        <li>Prompt Library v1 (JSON schema + versioning) & QA/Defect Rubric v1</li>
+                        <li>Quick wins: variant generator, defect scorer, scorecard v0.1</li>
+                    </ul>
+                    <div class="targets">
+                        <strong>Targets:</strong> −25% brief→draft time; ≥80% first-pass brand compliance
                     </div>
                 </div>
-            </div>
-            
-            <div class="video-grid" id="video-grid">
-                <!-- Videos will be dynamically loaded here -->
-            </div>
-        </div>
-    </section>
 
-    <!-- Methodology Section -->
-    <section id="methodology" class="methodology-section">
-        <div class="container">
-            <h2>JSON Prompt Methodology & Automated Scoring System</h2>
-            <p>Based on my structured approach documented in <a href="https://docs.google.com/spreadsheets/d/1VThE5mDLFk_kAwmz9OirAHjWTs5fRxTaNzQUWHF36s8/edit?usp=sharing" target="_blank">this Google Sheet</a></p>
-            
-            <div class="methodology-grid">
-                <div class="methodology-card">
-                    <h3>1. Metadata & Variables</h3>
+                <div class="phase-summary">
+                    <h3><span class="phase-icon">⚙️</span> 60 Days – Scale & Standardize</h3>
                     <ul>
-                        <li>AD_ID: Unique tracking identifier</li>
-                        <li>MODEL: VLM specification (Sora, Veo3, etc.)</li>
-                        <li>TARGET_PLATFORM: Aspect ratio constraints</li>
-                        <li>DURATION_SEC: Runtime limits</li>
-                        <li>A_B_TEST_VARIABLE: Focus variables</li>
+                        <li>Orchestrated pipeline in n8n with SLAs, alerts, and PromptOps (field-level A/Bs)</li>
+                        <li>Brand guardrails pre-flight; closed-loop analytics dashboard with content lineage</li>
+                        <li>Self-serve brief→prompt intake for PM/creatives</li>
+                    </ul>
+                    <div class="targets">
+                        <strong>Targets:</strong> −40% cycle time; −20% cost/asset; +50% throughput MoM with ≤10% QA fails
+                    </div>
+                </div>
+
+                <div class="phase-summary">
+                    <h3><span class="phase-icon">🚀</span> 90 Days – Optimize & Expand</h3>
+                    <ul>
+                        <li>Weekly experiment cadence, Scoring Engine v2 (weighted criteria), and 1–2 repeatable content programs</li>
+                        <li>Playbook v1: schema, guardrails, templates, defect taxonomy, and SLAs</li>
+                    </ul>
+                    <div class="targets">
+                        <strong>Targets:</strong> +100% throughput vs. baseline at equal/better CPA; ≥90% first-pass QA; −50% defect recurrence
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">🎯 Predictive Performance Intelligence System</h2>
+                <div class="intro-letter">
+                    <p><strong>Additional Value Proposition:</strong> Beyond the 30-60-90 plan, I propose building a <strong>Predictive Performance Intelligence System</strong> that will revolutionize how EarnIn predicts and optimizes marketing campaign ROI.</p>
+                </div>
+
+                <div class="phase-summary">
+                    <h3><span class="phase-icon">🧠</span> What This Solves</h3>
+                    <p style="margin-bottom: 20px; line-height: 1.9; font-size: 1.05em; color: #4a5568;">Marketing teams often waste budget on content that doesn't perform. This system predicts CPA, CTR, and engagement before spending a dollar on ad spend, helping you <strong>allocate budget to highest-performing variants</strong>.</p>
+                </div>
+
+                <div class="phase-summary">
+                    <h3><span class="phase-icon">🔮</span> How It Works</h3>
+                    <ul style="margin-top: 20px;">
+                        <li><strong>ML Model Training:</strong> Historical data → Campaign performance patterns → Predictive model</li>
+                        <li><strong>Real-Time Scoring:</strong> New AI-generated content → Instant performance prediction</li>
+                        <li><strong>Budget Optimization:</strong> Automatically prioritize high-probability winners for ad spend</li>
+                        <li><strong>Continuous Learning:</strong> Model retrains weekly with actual campaign results</li>
                     </ul>
                 </div>
-                <div class="methodology-card">
-                    <h3>2. Cinematography Parameters</h3>
+
+                <div class="phase-summary">
+                    <h3><span class="phase-icon">💰</span> Business Impact</h3>
+                    <div class="targets" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left-color: #2196F3;">
+                        <p style="margin-bottom: 15px;"><strong>Projected ROI:</strong></p>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li style="padding: 8px 0;">• <strong>30-40% reduction</strong> in wasted ad spend on low performers</li>
+                            <li style="padding: 8px 0;">• <strong>$500K+ annual savings</strong> by predicting and avoiding poor performers</li>
+                            <li style="padding: 8px 0;">• <strong>2x campaign success rate</strong> by testing predicted winners first</li>
+                            <li style="padding: 8px 0;">• <strong>Faster iteration cycles</strong> — ship what works, kill what doesn't</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="phase-summary">
+                    <h3><span class="phase-icon">🔧</span> Technical Implementation</h3>
+                    <p style="margin-bottom: 20px; line-height: 1.9; font-size: 1.05em; color: #4a5568;">Integrates seamlessly with existing infrastructure:</p>
                     <ul>
-                        <li>CAMERA_TYPE: Digital cinema specifications</li>
-                        <li>LENS_SPEC: 35mm prime lens equivalent</li>
-                        <li>DEPTH_OF_FIELD: Shallow focus control</li>
-                        <li>LIGHTING: Golden hour or studio diffused</li>
-                        <li>COLOR_GRADE: Warm cinematic minimal saturation</li>
+                        <li>Connects to your existing analytics stack (GA4, internal tracking)</li>
+                        <li>Uses JSON prompt features as input variables (duration, theme, CTA, etc.)</li>
+                        <li>Leverages n8n workflow for automated scoring → decision → execution</li>
+                        <li>Built on Python/ML pipeline (scikit-learn → TensorFlow) with API endpoints</li>
                     </ul>
                 </div>
-                <div class="methodology-card">
-                    <h3>3. Scene Breakdown</h3>
+
+                <div class="phase-summary">
+                    <h3><span class="phase-icon">🚀</span> Timeline & Deliverables</h3>
                     <ul>
-                        <li>Three-act structure: Tension → Solution → Resolution</li>
-                        <li>Time-coded visual descriptions</li>
-                        <li>Text overlay specifications</li>
-                        <li>Camera movement (dolly, push-in)</li>
+                        <li><strong>Days 1-30:</strong> Data collection, feature engineering, baseline model (75% accuracy)</li>
+                        <li><strong>Days 31-60:</strong> Production deployment, dashboard, A/B validation</li>
+                        <li><strong>Days 61-90:</strong> Model refinement, auto-budget allocation, reporting</li>
                     </ul>
+                    <div class="targets" style="margin-top: 25px;">
+                        <strong>Success Metric:</strong> ≥80% accuracy in predicting top quartile performers within first 60 days
+                    </div>
                 </div>
-                <div class="methodology-card">
-                    <h3>4. Audio & CTA</h3>
+
+                <div class="phase-summary">
+                    <h3><span class="phase-icon">💡</span> Why This Makes the Case for Full-Time</h3>
+                    <p style="margin-bottom: 15px; line-height: 1.9; font-size: 1.05em; color: #4a5568;">This system demonstrates three critical full-time value drivers:</p>
                     <ul>
-                        <li>VOICEOVER_TEXT: Brand messaging</li>
-                        <li>MUSIC_TRACK: Uplifting ambient synth</li>
-                        <li>SFX: App tap sounds, cash register chime</li>
-                        <li>FINAL_CTA: Download EarnIn call-to-action</li>
-                    </ul>
-                </div>
-                <div class="methodology-card">
-                    <h3>5. Automated Scoring System</h3>
-                    <ul>
-                        <li><strong>Quality Assessment:</strong> Visual clarity, resolution, and technical execution</li>
-                        <li><strong>Engagement Metrics:</strong> Story flow, pacing, and viewer retention</li>
-                        <li><strong>Brand Alignment:</strong> Consistency with EarnIn brand guidelines</li>
-                        <li><strong>Creative Innovation:</strong> Uniqueness and creative approach</li>
-                        <li><strong>Prompt Effectiveness:</strong> JSON structure success rate</li>
-                    </ul>
-                </div>
-                <div class="methodology-card">
-                    <h3>6. Optimization Insights</h3>
-                    <ul>
-                        <li><strong>Failed Prompts:</strong> Identify patterns in low-scoring content</li>
-                        <li><strong>Creative Enhancements:</strong> Suggestions for improved storytelling</li>
-                        <li><strong>Technical Improvements:</strong> Camera angles, lighting, and composition</li>
-                        <li><strong>Platform Optimization:</strong> AI tool-specific best practices</li>
-                        <li><strong>Iteration Tracking:</strong> Success rate improvements over time</li>
+                        <li><strong>Strategic Thinking:</strong> Not just executing campaigns, but predicting and optimizing them</li>
+                        <li><strong>Cross-functional Impact:</strong> Touches marketing, data science, engineering, and finance</li>
+                        <li><strong>Compound ROI:</strong> Single investment pays dividends across all future campaigns</li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="scoring-system-demo">
-                <h3>🎯 Automated Scoring in Action</h3>
-                <p>This portfolio demonstrates how the scoring system helps the EarnIn team:</p>
-                <div class="demo-grid">
-                    <div class="demo-card">
-                        <div class="demo-icon">🚫</div>
-                        <h4>Avoid Failed Patterns</h4>
-                        <p>Identify JSON prompts that consistently produce low-quality results</p>
-                    </div>
-                    <div class="demo-card">
-                        <div class="demo-icon">💡</div>
-                        <h4>Enhance Creativity</h4>
-                        <p>Discover what makes content more engaging and innovative</p>
-                    </div>
-                    <div class="demo-card">
-                        <div class="demo-icon">🎬</div>
-                        <h4>Optimize Videography</h4>
-                        <p>Refine camera work, lighting, and composition techniques</p>
-                    </div>
-                    <div class="demo-card">
-                        <div class="demo-icon">📊</div>
-                        <h4>Data-Driven Decisions</h4>
-                        <p>Make informed choices based on performance metrics</p>
-                    </div>
-                </div>
+
+            <div class="navigation">
+                <a href="netlify-portfolio.html" class="nav-link">View AI Content Portfolio</a>
+                <a href="viewer-portfolio.html" class="nav-link">View Video Gallery</a>
             </div>
         </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2>About This Portfolio</h2>
-            <p>This portfolio demonstrates my systematic approach to AI-generated marketing content creation. By applying director-level thinking to structured JSON prompts, I've developed a repeatable methodology that produces consistent, high-quality results across multiple AI platforms.</p>
-            <div class="tech-stack">
-                <h3>AI Tools & Technologies</h3>
-                <div class="tech-grid">
-                    <div class="tech-item">Sora</div>
-                    <div class="tech-item">Veo3</div>
-                    <div class="tech-item">ChatGPT</div>
-                    <div class="tech-item">Gemini</div>
-                    <div class="tech-item">Other Platforms</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Video Modal -->
-    <div id="video-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <video id="modal-video" controls>
-                <source src="" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="modal-info">
-                <h3 id="modal-title"></h3>
-                <p id="modal-description"></p>
-            </div>
+        <div class="contact-info">
+            <h2>Ready to Make an Impact</h2>
+            <p>I can start within 1–2 weeks and I'm flexible on title/scope.</p>
+            <p>Happy to walk through this plan in detail and discuss how I can contribute to EarnIn's success.</p>
+            <p><strong>David Bui</strong></p>
         </div>
     </div>
 
-    <!-- Admin Login Modal -->
-    <div id="admin-modal" class="modal">
+    <!-- Modal for task details -->
+    <div id="taskModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
         <div class="modal-content">
-            <div class="admin-login">
-                <h2>Admin Access</h2>
-                <p>Enter admin password to manage videos:</p>
-                <input type="password" id="admin-password" placeholder="Enter password">
-                <div class="admin-actions">
-                    <button class="btn-primary" onclick="checkAdminPassword()">Login</button>
-                    <button class="btn-secondary" onclick="closeAdminModal()">Cancel</button>
-                </div>
-            </div>
+            <button class="close" aria-label="Close modal">&times;</button>
+            <div id="modalBody"></div>
         </div>
     </div>
 
-    <script src="js/viewer-portfolio.js"></script>
+    <script>
+        const tasks = [
+            {
+                name: "Onboard & KPI Contract",
+                owners: ["Anna", "DJ"],
+                phase: "30d: Learn & Ship",
+                start: "2025-11-17",
+                end: "2025-11-26",
+                dependsOn: [],
+                color: "phase-30"
+            },
+            {
+                name: "Golden Dataset & Defect Taxonomy",
+                owners: ["Anna", "David"],
+                phase: "30d: Learn & Ship",
+                start: "2025-11-20",
+                end: "2025-12-05",
+                dependsOn: ["Onboard & KPI Contract"],
+                color: "phase-30"
+            },
+            {
+                name: "Prompt Library v1 (JSON schema + versioning)",
+                owners: ["David"],
+                phase: "30d: Learn & Ship",
+                start: "2025-11-20",
+                end: "2025-12-03",
+                dependsOn: ["Golden Dataset & Defect Taxonomy"],
+                color: "phase-30"
+            },
+            {
+                name: "Quick Win #1: Variant Generator",
+                owners: ["David"],
+                phase: "30d: Learn & Ship",
+                start: "2025-11-24",
+                end: "2025-12-02",
+                dependsOn: ["Prompt Library v1 (JSON schema + versioning)"],
+                color: "phase-30"
+            },
+            {
+                name: "Quick Win #2: Defect Scorer v0.1",
+                owners: ["David"],
+                phase: "30d: Learn & Ship",
+                start: "2025-11-26",
+                end: "2025-12-06",
+                dependsOn: ["Golden Dataset & Defect Taxonomy"],
+                color: "phase-30"
+            },
+            {
+                name: "Quick Win #3: Scorecard v0.1 (asset→performance)",
+                owners: ["DJ", "David"],
+                phase: "30d: Learn & Ship",
+                start: "2025-12-01",
+                end: "2025-12-10",
+                dependsOn: ["Prompt Library v1 (JSON schema + versioning)"],
+                color: "phase-30"
+            },
+            {
+                name: "Pipeline v2 in n8n (brief→publish; SLAs & alerts)",
+                owners: ["Alex", "David"],
+                phase: "60d: Scale & Standardize",
+                start: "2025-12-08",
+                end: "2026-01-09",
+                dependsOn: ["Quick Win #1: Variant Generator", "Quick Win #2: Defect Scorer v0.1"],
+                color: "phase-60"
+            },
+            {
+                name: "Brand Guardrails Service (pre-flight checks)",
+                owners: ["Design", "David"],
+                phase: "60d: Scale & Standardize",
+                start: "2025-12-10",
+                end: "2026-01-05",
+                dependsOn: ["Prompt Library v1 (JSON schema + versioning)"],
+                color: "phase-60"
+            },
+            {
+                name: "PromptOps & Field-level A/B Infra",
+                owners: ["David"],
+                phase: "60d: Scale & Standardize",
+                start: "2025-12-12",
+                end: "2026-01-08",
+                dependsOn: ["Prompt Library v1 (JSON schema + versioning)"],
+                color: "phase-60"
+            },
+            {
+                name: "Closed-Loop Analytics v1 (content lineage + dashboard)",
+                owners: ["DJ", "David"],
+                phase: "60d: Scale & Standardize",
+                start: "2025-12-15",
+                end: "2026-01-12",
+                dependsOn: ["Quick Win #3: Scorecard v0.1 (asset→performance)"],
+                color: "phase-60"
+            },
+            {
+                name: "Self-Serve Brief→Prompt Intake (creator/PM)",
+                owners: ["David"],
+                phase: "60d: Scale & Standardize",
+                start: "2026-01-02",
+                end: "2026-01-16",
+                dependsOn: ["Prompt Library v1 (JSON schema + versioning)"],
+                color: "phase-60"
+            },
+            {
+                name: "Experimentation Cadence (weekly hypotheses)",
+                owners: ["David", "Marketing"],
+                phase: "90d: Optimize & Expand",
+                start: "2026-01-13",
+                end: "2026-02-14",
+                dependsOn: ["Closed-Loop Analytics v1 (content lineage + dashboard)"],
+                color: "phase-90"
+            },
+            {
+                name: "Scoring Engine v2 (weighted criteria)",
+                owners: ["David"],
+                phase: "90d: Optimize & Expand",
+                start: "2026-01-13",
+                end: "2026-02-07",
+                dependsOn: ["Quick Win #2: Defect Scorer v0.1"],
+                color: "phase-90"
+            },
+            {
+                name: "Content Program #1: 'How It Works' Series",
+                owners: ["David", "Marketing"],
+                phase: "90d: Optimize & Expand",
+                start: "2026-01-20",
+                end: "2026-02-10",
+                dependsOn: ["Pipeline v2 in n8n (brief→publish; SLAs & alerts)"],
+                color: "phase-90"
+            },
+            {
+                name: "Content Program #2: Lifecycle Nudges",
+                owners: ["David", "Marketing"],
+                phase: "90d: Optimize & Expand",
+                start: "2026-01-27",
+                end: "2026-02-14",
+                dependsOn: ["Pipeline v2 in n8n (brief→publish; SLAs & alerts)"],
+                color: "phase-90"
+            },
+            {
+                name: "Playbook v1 (schema, guardrails, templates)",
+                owners: ["David"],
+                phase: "90d: Optimize & Expand",
+                start: "2026-02-03",
+                end: "2026-02-14",
+                dependsOn: ["All prior"],
+                color: "phase-90"
+            }
+        ];
+
+        const startDate = new Date("2025-11-17");
+        const endDate = new Date("2026-02-16");
+        
+        function generateDays() {
+            const days = [];
+            const current = new Date(startDate);
+            while (current <= endDate) {
+                days.push(new Date(current));
+                current.setDate(current.getDate() + 1);
+            }
+            return days;
+        }
+
+        const days = generateDays();
+
+        function renderGanttChart() {
+            const timelineOverview = document.getElementById('timelineOverview');
+            
+            // Group tasks by phase
+            const phases = [
+                { name: "30 Days: Learn & Ship Small", class: "phase-30", icon: "📚" },
+                { name: "60 Days: Scale & Standardize", class: "phase-60", icon: "⚙️" },
+                { name: "90 Days: Optimize & Expand", class: "phase-90", icon: "🚀" }
+            ];
+            
+            phases.forEach(phase => {
+                // Create phase block
+                const phaseBlock = document.createElement('div');
+                phaseBlock.className = 'phase-block';
+                
+                // Phase header
+                const phaseHeader = document.createElement('div');
+                phaseHeader.className = `phase-header ${phase.class}`;
+                phaseHeader.innerHTML = `<span>${phase.icon} ${phase.name}</span>`;
+                phaseBlock.appendChild(phaseHeader);
+                
+                // Tasks grid
+                const tasksGrid = document.createElement('div');
+                tasksGrid.className = 'tasks-grid';
+                
+                // Filter tasks for this phase
+                const phaseTasks = tasks.filter(task => {
+                    if (phase.name.includes('30 Days')) return task.phase.includes('30d');
+                    if (phase.name.includes('60 Days')) return task.phase.includes('60d');
+                    if (phase.name.includes('90 Days')) return task.phase.includes('90d');
+                    return false;
+                });
+                
+                phaseTasks.forEach(task => {
+                    const taskItem = document.createElement('div');
+                    taskItem.className = `task-item ${task.color}`;
+                    taskItem.setAttribute('tabindex', '0');
+                    taskItem.setAttribute('role', 'button');
+                    taskItem.setAttribute('aria-label', `View details for ${task.name}`);
+                    taskItem.onclick = () => showTaskDetails(task);
+                    taskItem.onkeydown = (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            showTaskDetails(task);
+                        }
+                    };
+                    
+                    const formatDate = (dateStr) => {
+                        const date = new Date(dateStr);
+                        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    };
+                    
+                    taskItem.innerHTML = `
+                        <div class="task-item-header">
+                            <div class="task-item-title">${task.name}</div>
+                            <div class="task-item-date">${formatDate(task.start)} - ${formatDate(task.end)}</div>
+                        </div>
+                        <div class="task-item-owners">👥 ${task.owners.join(', ')}</div>
+                        ${task.dependsOn.length > 0 ? `
+                            <div class="task-item-deps">
+                                <strong>Depends on:</strong> ${task.dependsOn.join(', ')}
+                            </div>
+                        ` : ''}
+                    `;
+                    
+                    tasksGrid.appendChild(taskItem);
+                });
+                
+                phaseBlock.appendChild(tasksGrid);
+                timelineOverview.appendChild(phaseBlock);
+            });
+        }
+
+        function showTaskDetails(task) {
+            const modal = document.getElementById('taskModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <h2>${task.name}</h2>
+                <div class="task-detail">
+                    <h4>Details</h4>
+                    <p><strong>Phase:</strong> ${task.phase}</p>
+                    <p><strong>Owners:</strong> ${task.owners.join(', ')}</p>
+                    <p><strong>Duration:</strong> ${task.start} to ${task.end}</p>
+                    ${task.dependsOn.length > 0 ? `<p><strong>Dependencies:</strong> ${task.dependsOn.join(', ')}</p>` : ''}
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            
+            // Focus on close button for accessibility
+            const closeBtn = modal.querySelector('.close');
+            if (closeBtn) {
+                setTimeout(() => closeBtn.focus(), 100);
+            }
+        }
+
+        // Proper event listener for modal close
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeBtn = document.querySelector('.close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    document.getElementById('taskModal').style.display = 'none';
+                });
+            }
+            
+            // Keyboard navigation for toggle button
+            const toggleBtn = document.getElementById('toggle-chart-btn');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleChart();
+                    }
+                });
+            }
+            
+            // ESC key to close modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeTaskModal();
+                }
+            });
+        });
+        
+        // Close modal function
+        function closeTaskModal() {
+            const modal = document.getElementById('taskModal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+        }
+        
+        // Fallback for close button
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeBtn = document.querySelector('.close');
+            if (closeBtn) {
+                closeBtn.onclick = closeTaskModal;
+                closeBtn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        closeTaskModal();
+                    }
+                });
+            }
+        });
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('taskModal');
+            if (event.target === modal) {
+                closeTaskModal();
+            }
+        };
+
+        renderGanttChart();
+        renderTraditionalGantt();
+
+        function toggleChart() {
+            const overview = document.getElementById('timelineOverview');
+            const ganttView = document.getElementById('ganttChartView');
+            const button = document.querySelector('.chart-toggle button span');
+            
+            if (ganttView.classList.contains('hidden')) {
+                overview.classList.add('hidden');
+                ganttView.classList.remove('hidden');
+                button.textContent = '📋 Switch to List View';
+            } else {
+                overview.classList.remove('hidden');
+                ganttView.classList.add('hidden');
+                button.textContent = '📊 Switch to Gantt Chart View';
+            }
+        }
+
+        function renderTraditionalGantt() {
+            const chartContainer = document.getElementById('chartContainer');
+            
+            // Create Gantt header with weekly markers
+            const header = document.createElement('div');
+            header.className = 'gantt-header';
+            
+            const weekMarkers = document.createElement('div');
+            weekMarkers.className = 'gantt-week-markers';
+            
+            const weeks = [
+                'Nov 17', 'Nov 24', 'Dec 01', 'Dec 08', 'Dec 15', 'Dec 22', 'Dec 29',
+                'Jan 05', 'Jan 12', 'Jan 19', 'Jan 26', 'Feb 02', 'Feb 09', 'Feb 16'
+            ];
+            
+            weeks.forEach((week) => {
+                const marker = document.createElement('div');
+                marker.className = 'week-marker';
+                marker.textContent = week;
+                
+                // Highlight phase review dates
+                if (week === 'Dec 15' || week === 'Jan 12' || week === 'Feb 09') {
+                    marker.style.background = 'rgba(255,215,0,0.3)';
+                }
+                
+                weekMarkers.appendChild(marker);
+            });
+            
+            header.appendChild(weekMarkers);
+            chartContainer.appendChild(header);
+            
+            // Add review markers
+            const reviewPositions = [
+                { week: 'Dec 15', label: 'Day 30 Review' },
+                { week: 'Jan 12', label: 'Day 60 Review' },
+                { week: 'Feb 09', label: 'Day 90 Review' }
+            ];
+            
+            reviewPositions.forEach((review) => {
+                const position = weeks.indexOf(review.week);
+                if (position !== -1) {
+                    const marker = document.createElement('div');
+                    marker.className = 'review-marker';
+                    const markerWidth = (1500 - 280) / weeks.length;
+                    marker.style.left = `${280 + (position * markerWidth)}px`;
+                    
+                    const label = document.createElement('div');
+                    label.className = 'review-marker-label';
+                    label.textContent = review.label;
+                    marker.appendChild(label);
+                    
+                    chartContainer.appendChild(marker);
+                }
+            });
+            
+            // Create tasks
+            const tasksContainer = document.createElement('div');
+            tasksContainer.className = 'gantt-tasks';
+            
+            tasks.forEach(task => {
+                const taskRow = document.createElement('div');
+                taskRow.className = 'gantt-task-row';
+                
+                // Task label
+                const taskLabel = document.createElement('div');
+                taskLabel.className = 'gantt-task-label';
+                taskLabel.textContent = task.name;
+                taskRow.appendChild(taskLabel);
+                
+                // Task bar container
+                const container = document.createElement('div');
+                container.className = 'gantt-task-bar-container';
+                
+                weeks.forEach(() => {
+                    const cell = document.createElement('div');
+                    cell.className = 'month-cell';
+                    container.appendChild(cell);
+                });
+                
+                // Task bar
+                const taskStart = new Date(task.start);
+                const taskEnd = new Date(task.end);
+                
+                // Calculate position based on dates
+                const weekDates = weeks.map((week, idx) => {
+                    const parts = week.split(' ');
+                    const months = { 'Nov': 10, 'Dec': 11, 'Jan': 0, 'Feb': 1 };
+                    const year = parts[0] === 'Nov' || parts[0] === 'Dec' ? 2025 : 2026;
+                    const month = months[parts[0]];
+                    const day = parseInt(parts[1]);
+                    return new Date(year, month, day);
+                });
+                
+                const startWeekIndex = weekDates.findIndex(weekDate => weekDate >= taskStart);
+                const endWeekIndex = weekDates.findIndex(weekDate => weekDate > taskEnd);
+                
+                const startPos = startWeekIndex >= 0 ? startWeekIndex : 0;
+                const endPos = endWeekIndex >= 0 ? endWeekIndex : weeks.length;
+                const duration = endPos - startPos;
+                
+                if (duration > 0) {
+                    const taskBar = document.createElement('div');
+                    taskBar.className = `gantt-task-bar ${task.color}`;
+                    const barWidth = (1500 - 280) / weeks.length;
+                    taskBar.style.left = `${startPos * barWidth}px`;
+                    taskBar.style.width = `${duration * barWidth}px`;
+                    taskBar.textContent = task.name;
+                    taskBar.setAttribute('tabindex', '0');
+                    taskBar.setAttribute('role', 'button');
+                    taskBar.setAttribute('aria-label', `View details for ${task.name}`);
+                    taskBar.onclick = () => showTaskDetails(task);
+                    taskBar.onkeydown = (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            showTaskDetails(task);
+                        }
+                    };
+                    
+                    container.appendChild(taskBar);
+                }
+                
+                taskRow.appendChild(container);
+                tasksContainer.appendChild(taskRow);
+            });
+            
+            chartContainer.appendChild(tasksContainer);
+        }
+    </script>
 </body>
 </html>

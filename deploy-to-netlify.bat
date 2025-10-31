@@ -13,10 +13,21 @@ mkdir "deploy"
 
 REM Copy essential files
 echo Copying portfolio files...
+copy "index.html" "deploy\"
 copy "netlify-portfolio.html" "deploy\"
+copy "viewer-portfolio.html" "deploy\"
 copy "netlify.toml" "deploy\"
 copy "README.md" "deploy\"
 copy "DEPLOYMENT_GUIDE.md" "deploy\"
+copy "VIDEO_UPLOAD_GUIDE.md" "deploy\"
+copy "PRE_DEPLOYMENT_CHECKLIST.md" "deploy\"
+copy "QUICK_START.md" "deploy\"
+copy "DEPLOYMENT_SUMMARY.md" "deploy\"
+copy "N8N_WORKFLOW_INTEGRATION_PROMPT.md" "deploy\"
+copy "N8N_PROMPT_SHORT.md" "deploy\"
+copy "N8N_INTEGRATION_VISUAL.md" "deploy\"
+copy "BRAND_THEME_SUMMARY.md" "deploy\"
+copy "COMPLETE_PORTFOLIO_SUMMARY.md" "deploy\"
 
 REM Copy CSS and JS folders
 xcopy "css" "deploy\css\" /e /i /q

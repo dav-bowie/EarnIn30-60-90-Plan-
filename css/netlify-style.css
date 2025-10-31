@@ -1,16 +1,26 @@
-/* Netlify-Style Portfolio CSS */
+/* EarnIn Brand Portfolio CSS */
 :root {
-    --primary-color: #00ad9f;
-    --secondary-color: #0e1e25;
-    --accent-color: #ff6b35;
-    --text-color: #2c3e50;
-    --text-light: #7f8c8d;
-    --background: #ffffff;
-    --background-light: #f8f9fa;
-    --border-color: #e1e8ed;
+    --earnin-yellow: #FFC107;
+    --earnin-dark-yellow: #FFD740;
+    --earnin-light-yellow: #FFF8E1;
+    --earnin-black: #000000;
+    --earnin-dark-gray: #212121;
+    --earnin-gray: #424242;
+    --earnin-light-gray: #F5F5F5;
+    --earnin-white: #FFFFFF;
+    
+    /* Primary Colors - EarnIn Brand */
+    --primary-color: var(--earnin-yellow);
+    --secondary-color: var(--earnin-black);
+    --accent-color: var(--earnin-dark-yellow);
+    --text-color: var(--earnin-black);
+    --text-light: var(--earnin-gray);
+    --background: var(--earnin-white);
+    --background-light: var(--earnin-light-yellow);
+    --border-color: #E0E0E0;
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
-    --border-radius: 8px;
+    --border-radius: 12px;
     --transition: all 0.3s ease;
 }
 
@@ -21,10 +31,20 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--background);
+    background-color: var(--earnin-light-yellow);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 .container {
@@ -83,6 +103,18 @@ body {
     color: var(--primary-color);
 }
 
+.nav-link:focus {
+    outline: 2px solid var(--earnin-yellow);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.nav-link:focus-visible {
+    outline: 2px solid var(--earnin-yellow);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
 .nav-link::after {
     content: '';
     position: absolute;
@@ -99,28 +131,44 @@ body {
 }
 
 .btn-primary {
-    background: var(--primary-color);
-    color: white;
+    background: var(--earnin-black);
+    color: var(--earnin-white);
     border: none;
-    padding: 10px 20px;
-    border-radius: var(--border-radius);
-    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
     align-items: center;
     gap: 8px;
+    font-size: 16px;
 }
 
 .btn-primary:hover {
-    background: #008a7d;
-    transform: translateY(-1px);
+    background: var(--earnin-gray);
+    transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
+}
+
+.btn-primary:focus {
+    outline: 3px solid var(--earnin-yellow);
+    outline-offset: 3px;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--background-light) 0%, #ffffff 100%);
+    background: var(--earnin-white);
     padding: 80px 0;
     text-align: center;
 }
@@ -129,10 +177,7 @@ body {
     font-size: 48px;
     font-weight: 700;
     margin-bottom: 20px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--earnin-black);
 }
 
 .hero-content p {
@@ -328,6 +373,20 @@ body {
     box-shadow: var(--shadow-hover);
 }
 
+.video-card:focus {
+    outline: 3px solid var(--earnin-yellow);
+    outline-offset: 4px;
+}
+
+.video-card:focus-visible {
+    outline: 3px solid var(--earnin-yellow);
+    outline-offset: 4px;
+}
+
+.video-card:active {
+    transform: translateY(-2px);
+}
+
 .video-thumbnail {
     position: relative;
     width: 100%;
@@ -404,6 +463,20 @@ body {
 .btn-small:hover {
     background: var(--background-light);
     border-color: var(--primary-color);
+}
+
+.btn-small:focus {
+    outline: 2px solid var(--earnin-yellow);
+    outline-offset: 2px;
+}
+
+.btn-small:focus-visible {
+    outline: 2px solid var(--earnin-yellow);
+    outline-offset: 2px;
+}
+
+.btn-small:active {
+    transform: translateY(1px);
 }
 
 .btn-delete {
@@ -625,6 +698,11 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
+    overflow-y: auto;
+}
+
+.modal[aria-hidden="false"] {
+    display: block;
 }
 
 .modal-content {
@@ -658,6 +736,20 @@ body {
 
 .close:hover {
     background: rgba(0, 0, 0, 0.7);
+}
+
+.close:focus {
+    outline: 3px solid var(--earnin-yellow);
+    outline-offset: 2px;
+}
+
+.close:focus-visible {
+    outline: 3px solid var(--earnin-yellow);
+    outline-offset: 2px;
+}
+
+.close:active {
+    transform: scale(0.95);
 }
 
 #modal-video {

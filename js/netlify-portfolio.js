@@ -136,12 +136,12 @@ function renderVideos() {
         const scoreClass = getScoreClass(avgScore);
         
         return `
-            <div class="video-card" data-id="${video.id}" onclick="openVideoModal('${video.id}')">
+            <div class="video-card" data-id="${video.id}" onclick="openVideoModal('${video.id}')" role="button" tabindex="0" aria-label="View video ${video.name}" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openVideoModal('${video.id}');}">
                 <div class="video-thumbnail">
-                    <video preload="metadata" muted>
+                    <video preload="metadata" muted aria-label="Thumbnail for ${video.name}">
                         <source src="${video.data || video.url}" type="${video.type || 'video/mp4'}">
                     </video>
-                    <div class="play-overlay">
+                    <div class="play-overlay" aria-hidden="true">
                         <i class="fas fa-play"></i>
                     </div>
                 </div>
@@ -149,20 +149,20 @@ function renderVideos() {
                     <div class="video-title">${video.name}</div>
                     <div class="video-meta">
                         <span>${(video.size / (1024 * 1024)).toFixed(1)} MB</span>
-                        <span>•</span>
+                        <span aria-hidden="true">•</span>
                         <span>${new Date(video.uploadDate).toLocaleDateString()}</span>
-                        <span>•</span>
+                        <span aria-hidden="true">•</span>
                         <span class="ai-tool-badge">${video.aiTool}</span>
                     </div>
                     <div class="video-actions">
-                        <button class="btn-small" onclick="event.stopPropagation(); analyzeVideo('${video.id}')">
-                            <i class="fas fa-chart-line"></i> Analyze
+                        <button class="btn-small" onclick="event.stopPropagation(); analyzeVideo('${video.id}')" aria-label="Analyze video ${video.name}">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i> Analyze
                         </button>
-                        <button class="btn-small" onclick="event.stopPropagation(); downloadVideo('${video.id}')">
-                            <i class="fas fa-download"></i> Download
+                        <button class="btn-small" onclick="event.stopPropagation(); downloadVideo('${video.id}')" aria-label="Download video ${video.name}">
+                            <i class="fas fa-download" aria-hidden="true"></i> Download
                         </button>
-                        <button class="btn-small btn-delete" onclick="event.stopPropagation(); deleteVideo('${video.id}')">
-                            <i class="fas fa-trash"></i> Delete
+                        <button class="btn-small btn-delete" onclick="event.stopPropagation(); deleteVideo('${video.id}')" aria-label="Delete video ${video.name}">
+                            <i class="fas fa-trash" aria-hidden="true"></i> Delete
                         </button>
                     </div>
                 </div>
@@ -213,7 +213,7 @@ function openVideoModal(videoId) {
     const modalTitle = document.getElementById('modal-title');
     const modalDescription = document.getElementById('modal-description');
     
-    modalVideo.src = video.url;
+    modalVideo.src = video.data || video.url;
     modalTitle.textContent = video.name;
     modalDescription.innerHTML = `
         <strong>AI Tool:</strong> ${video.aiTool}<br>
@@ -223,7 +223,42 @@ function openVideoModal(videoId) {
     `;
     
     modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    
+    // Focus management for accessibility
+    const closeBtn = modal.querySelector('.close');
+    if (closeBtn) {
+        setTimeout(() => {
+            closeBtn.focus();
+        }, 100);
+    }
+    
+    // Trap focus within modal
+    const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    // Handle tab key trapping
+    const handleTabKey = (e) => {
+        if (e.key !== 'Tab') return;
+        
+        if (e.shiftKey) {
+            if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            }
+        } else {
+            if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
+    };
+    
+    // Store handler for cleanup
+    modal._tabKeyHandler = handleTabKey;
+    modal.addEventListener('keydown', handleTabKey);
 }
 
 // Close modal
@@ -231,10 +266,23 @@ function closeModal() {
     const modal = document.getElementById('video-modal');
     const modalVideo = document.getElementById('modal-video');
     
+    // Remove tab key handler if it exists
+    if (modal._tabKeyHandler) {
+        modal.removeEventListener('keydown', modal._tabKeyHandler);
+        delete modal._tabKeyHandler;
+    }
+    
     modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
     modalVideo.pause();
     modalVideo.src = '';
     document.body.style.overflow = 'auto';
+    
+    // Return focus to trigger element (video card)
+    const trigger = document.querySelector('.video-card[data-id]');
+    if (trigger) {
+        setTimeout(() => trigger.focus(), 100);
+    }
 }
 
 // Close modal when clicking outside
@@ -466,12 +514,27 @@ function compareWithOthers(videoId) {
 // Download video
 function downloadVideo(videoId) {
     const video = videos.find(v => v.id == videoId);
-    if (!video) return;
+    if (!video) {
+        showNotification('Video not found', 'error');
+        return;
+    }
+    
+    // Use data URL if available, otherwise use URL
+    const videoUrl = video.data || video.url;
+    if (!videoUrl) {
+        showNotification('Video source not available', 'error');
+        return;
+    }
     
     const link = document.createElement('a');
-    link.href = video.url;
+    link.href = videoUrl;
     link.download = video.name;
+    link.setAttribute('aria-label', `Download ${video.name}`);
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
+    
+    showNotification(`Downloading ${video.name}...`, 'success');
 }
 
 // Delete individual video
